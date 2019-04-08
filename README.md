@@ -1,0 +1,1 @@
+This is going to be an app that you can install in order to create an online library of the games you own. My hope is to be able to add games and filter them based on different stats so that friends can see what you have and quickly filter by things such as the game length, number of players, or your rating of the game.
