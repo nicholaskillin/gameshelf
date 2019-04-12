@@ -1,8 +1,19 @@
 <header>
-  <nav class="navbar navbar-dark bg-dark navbar-fixed-top navbar-inverse">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark navbar-fixed-top navbar-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <%= link_to "Game Shelf", root_path, class: "navbar-brand" %>
-    <ul class="navbar-nav navbar-right">
-      <li class="nav-item"><%= link_to "Login", root_path, class: "nav-link" %></li>
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to "Sign Up", new_user_path, class: "nav-link" %>
+      </li>
+      <span class="navbar-text">|</span>
+      <li class="nav-item">
+        <%= link_to "Login", root_path, class: "nav-link" %>
+      </li>    
     </ul>
   </nav>
 </header>
