@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Account created successfully."
-      redirect_to root_url
+      redirect_to @user
     else
       flash[:danger] = "Your account was not created. Please correct the errors below and try again."
     end
