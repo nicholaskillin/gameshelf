@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash[:danger] = "Your account was not created. Please correct the errors below and try again."
+      render 'new'
     end
   end
 

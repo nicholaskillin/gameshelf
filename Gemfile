@@ -43,6 +43,8 @@ gem 'figaro'
 # Encrypt user passwords
 gem 'bcrypt'
 
+gem 'rails-controller-testing'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
