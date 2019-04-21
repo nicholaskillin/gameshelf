@@ -23,6 +23,11 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  # Sends activation email.
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
