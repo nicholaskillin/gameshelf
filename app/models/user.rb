@@ -22,6 +22,17 @@ class User < ApplicationRecord
   def User.new_token
     SecureRandom.urlsafe_base64
   end
+
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+
+  # Activates an account
+  def activate
+    update_columns(activated: true, activated_at: Time.zone.now)
+  end
   
   private 
 
