@@ -1,4 +1,8 @@
-<div class="row" style="padding-top: 2em;">
-  <div class="" style="border: 2px solid black; width: 8em; height: 8em; margin-left: 2.5em;">Profile Image</div>
-  <div id="user-name"><%= @user.name %></div>
+<div class="row profile-header">
+  <% if @user.name == "Nope" %>
+    <div class="user-avatar">Profile Image</div>
+  <% else %>
+    <%= image_tag("users/placeholder-avatar.png", :alt => "placeholder profile image", :class => "user-avatar") %>
+  <% end %>
+  <div id="user-name" class="center"><%= @user.name %></div>
 </div>

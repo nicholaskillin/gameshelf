@@ -22,3 +22,23 @@
   margin-top: 45px;
   @include box_sizing;
 }
+
+/* Profile Page Header */
+
+.profile-header {
+  height: 8em;
+  margin-top: 2em;
+}
+
+.user-avatar {
+  border: 2px solid black;
+  width: 8em;
+  height: 100%;
+  margin-left: 2.5em;
+}
+
+#user-name{
+  margin-left: 1em;
+  font-size: 2em;
+  line-height: 4em;
+}
