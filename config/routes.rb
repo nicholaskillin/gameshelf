@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'games/create'
+  get 'games/update'
+  get 'games/destroy'
   get 'sessions/new'
   root 'static_pages#home'
   get '/signup', to: 'users#new'
@@ -10,4 +13,5 @@ Rails.application.routes.draw do
   resources  :users
   resources  :password_resets, only: [:new, :create, :edit, :update]
   resources :account_activations, only: [:edit]
+  resources :games, only: [:create, :edit, :update, :destroy]
 end
