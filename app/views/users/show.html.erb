@@ -27,7 +27,37 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= render 'shared/game_form' %>
+        <!-- <%= render 'shared/game_form' %> -->
+        <div class="modal-container">
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Search BGG" id="searchTerm">
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-primary" onclick="getBggData()">Search</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="searchBoardGames">
+                  <label class="custom-control-label" for="searchBoardGames">Base Games</label>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="searchexpansions">
+                  <label class="custom-control-label" for="searchexpansions">Expansions</label>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div>
+            <h5 id="resultsHeader"></h5>
+            <table id="searchResults"></table>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
