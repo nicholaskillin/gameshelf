@@ -3,6 +3,7 @@
 // Gets the Data from BoardGame Geek
 
 function getBggData() {
+  // Finds out if we are searching Board Games, Expansions, or both
   if (document.getElementById("searchBoardGames").checked == true && document.getElementById("searchExpansions").checked == true) {
     var type = "boardgame,boardgameexpansion"
   } else if (document.getElementById("searchBoardGames").checked == true) {
@@ -10,12 +11,13 @@ function getBggData() {
   } else {
     var type = "boardgameexpansion"
   }
+
+  // Get search term and create the API URL to query
   var searchTerm = document.getElementById("searchTerm").value;
   var uri = encodeURI(searchTerm);
-  console.log("Type is " + type);
-  // console.log("Search Term = " + searchTerm);
   var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=" + type + "&query=" + uri
-  // console.log("URL used is = " + httpURL);
+
+  //Query the API
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
