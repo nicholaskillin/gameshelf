@@ -1,10 +1,20 @@
 'use strict';
 
+// Gets the Data from BoardGame Geek
+
 function getBggData() {
+  if (document.getElementById("searchBoardGames").checked == true && document.getElementById("searchExpansions").checked == true) {
+    var type = "boardgame,boardgameexpansion"
+  } else if (document.getElementById("searchBoardGames").checked == true) {
+    var type = "boardgame"
+  } else {
+    var type = "boardgameexpansion"
+  }
   var searchTerm = document.getElementById("searchTerm").value;
   var uri = encodeURI(searchTerm);
+  console.log("Type is " + type);
   // console.log("Search Term = " + searchTerm);
-  var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=boardgame,boardgameexpansion&query=" + uri
+  var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=" + type + "&query=" + uri
   // console.log("URL used is = " + httpURL);
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -35,3 +45,17 @@ function displayData(xml) {
   document.getElementById("resultsHeader").innerHTML = "Search Results = " + x + " items.";
   document.getElementById("searchResults").innerHTML = table;
 };
+
+// Makes sure that Board Games or Expansions are always selected in the search params
+
+function updateGames() {
+  if (document.getElementById("searchBoardGames").checked == false && document.getElementById("searchExpansions").checked == false) {
+    document.getElementById("searchExpansions").checked = true;
+  }
+}
+
+function updateExpansions() {
+  if (document.getElementById("searchBoardGames").checked == false && document.getElementById("searchExpansions").checked == false) {
+    document.getElementById("searchBoardGames").checked = true;
+  }
+}
