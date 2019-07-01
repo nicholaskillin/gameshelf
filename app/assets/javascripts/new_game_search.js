@@ -38,7 +38,7 @@ function displayData(xml) {
   var table = "<tr><th>Game</th><th>Year Released</th></tr>";
   var x = xmlDoc.getElementsByTagName("item").length;
   for (i = 0; i < x ; i++) { 
-    table += "<tr><td>" +
+    table += "<tr onclick=\"getGameData(" + xmlDoc.getElementsByTagName("item")[i].getAttribute("id") + ")\"><td>" +
     xmlDoc.getElementsByTagName("name")[i].getAttribute("value") +
     "</td><td>" +
     xmlDoc.getElementsByTagName("yearpublished")[i].getAttribute("value") + 
@@ -60,4 +60,20 @@ function updateExpansions() {
   if (document.getElementById("searchBoardGames").checked == false && document.getElementById("searchExpansions").checked == false) {
     document.getElementById("searchBoardGames").checked = true;
   }
+}
+
+function getGameData(i) {
+  //Query the API
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      addGame(this.responseText);
+    }
+  };
+  xhttp.open("GET", "https://www.boardgamegeek.com/xmlapi2/thing?id=" + i, true);
+  xhttp.send();
+};
+
+function addGame(game) {
+  console.log(game);
 }
