@@ -91,7 +91,8 @@ function addGame(gameData) {
   };
 
   let promise = $.post(
-    "https://5d1ab237dd81710014e87d83.mockapi.io/Game", game
+    //"https://5d1ab237dd81710014e87d83.mockapi.io/Game", game
+    '/games', game
   )
 
   promise.then(
