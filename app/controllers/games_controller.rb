@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   def create
+    logger.debug 'game_params'
     @game = current_user.games.build(game_params)
     if @game.save
       flash[:success] = "Game created!"
@@ -19,6 +20,6 @@ class GamesController < ApplicationController
   private
 
     def game_params
-      params.require(:title).permit(:description, :image, :play_time, :min_players, :max_players)
+      params.permit(:title, :description, :image, :play_time, :min_players, :max_players)
     end
 end

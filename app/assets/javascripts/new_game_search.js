@@ -90,13 +90,27 @@ function addGame(gameData) {
     image: xmlDoc.getElementsByTagName("image")[0].innerHTML
   };
 
-  let promise = $.post(
-    //"https://5d1ab237dd81710014e87d83.mockapi.io/Game", game
-    '/games', game
-  )
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  });
+  
+  $.ajax({
+    url: '/games',
+    type: 'POST',
+    dataType: 'json',
+    data: game,
+    success: function (response) {
+      console.log(response);
+    }
+  });
 
-  promise.then(
-    data => console.log('data: ', data),
-    error => console.log('error: ', error)
-  )
+  //let promise = $.post(
+    //"https://5d1ab237dd81710014e87d83.mockapi.io/Game", game
+    //'/games', game
+  //)
+
+  //promise.then(
+    //data => console.log('data: ', data),
+    //error => console.log('error: ', error)
+  //)
 };
