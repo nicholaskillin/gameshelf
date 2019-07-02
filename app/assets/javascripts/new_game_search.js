@@ -5,17 +5,17 @@
 function getBggData() {
   // Finds out if we are searching Board Games, Expansions, or both
   if (document.getElementById("searchBoardGames").checked == true && document.getElementById("searchExpansions").checked == true) {
-    var type = "boardgame,boardgameexpansion"
+    var type = "boardgame,boardgameexpansion";
   } else if (document.getElementById("searchBoardGames").checked == true) {
-    var type = "boardgame"
+    var type = "boardgame";
   } else {
-    var type = "boardgameexpansion"
+    var type = "boardgameexpansion";
   }
 
   // Get search term and create the API URL to query
   var searchTerm = document.getElementById("searchTerm").value;
   var uri = encodeURI(searchTerm);
-  var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=" + type + "&query=" + uri
+  var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=" + type + "&query=" + uri;
 
   // Query the API
   var xhttp = new XMLHttpRequest();
@@ -26,7 +26,7 @@ function getBggData() {
   };
   xhttp.open("GET", httpURL, true);
   xhttp.send();
-};
+}
 
 function displayData(xml) {
   var i;
@@ -42,11 +42,11 @@ function displayData(xml) {
     xmlDoc.getElementsByTagName("name")[i].getAttribute("value") +
     "</td><td>" +
     xmlDoc.getElementsByTagName("yearpublished")[i].getAttribute("value") + 
-    "</td></tr>"
-  };
+    "</td></tr>";
+  }
   document.getElementById("resultsHeader").innerHTML = "Search Results = " + x + " items.";
   document.getElementById("searchResults").innerHTML = table;
-};
+}
 
 // Makes sure that Board Games or Expansions are always selected in the search params
 
@@ -73,7 +73,7 @@ function getGameData(i) {
   };
   xhttp.open("GET", "https://www.boardgamegeek.com/xmlapi2/thing?id=" + i, true);
   xhttp.send();
-};
+}
 
 // Once we have that game data we will use it to create a game in our app
 
@@ -81,7 +81,7 @@ function addGame(gameData) {
   var parser = new DOMParser();
   var xmlDoc = parser.parseFromString(gameData,"text/xml");
 
-  let game = {
+  var game = {
     title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
     play_time: xmlDoc.getElementsByTagName("minplaytime")[0].getAttribute("value") + " - " + xmlDoc.getElementsByTagName("maxplaytime")[0].getAttribute("value") + " min",
     min_players: xmlDoc.getElementsByTagName("minplayers")[0].getAttribute("value"),
@@ -103,14 +103,4 @@ function addGame(gameData) {
       console.log(response);
     }
   });
-
-  //let promise = $.post(
-    //"https://5d1ab237dd81710014e87d83.mockapi.io/Game", game
-    //'/games', game
-  //)
-
-  //promise.then(
-    //data => console.log('data: ', data),
-    //error => console.log('error: ', error)
-  //)
-};
+}
