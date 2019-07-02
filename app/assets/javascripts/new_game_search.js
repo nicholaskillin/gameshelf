@@ -63,15 +63,18 @@ function updateExpansions() {
 }
 
 // Once a user selects a game from the search results this funciton gets more detailed data about that specific game from BGG
-function getGameData(i) {
-  //Query the API
+function getGameData(selectedGame) {
+  // Close the new game modal
+  $('#newgame').modal('hide');
+
+  // Query the API
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       addGame(this.responseText);
     }
   };
-  xhttp.open("GET", "https://www.boardgamegeek.com/xmlapi2/thing?id=" + i, true);
+  xhttp.open("GET", "https://www.boardgamegeek.com/xmlapi2/thing?id=" + selectedGame, true);
   xhttp.send();
 }
 
@@ -103,4 +106,7 @@ function addGame(gameData) {
       console.log(response);
     }
   });
+
+  // Reload the page
+  location.reload();
 }
