@@ -53,6 +53,10 @@
 }
 
 tr:hover{
-  background-color:gray;
+  background-color:lightgray;
   cursor:pointer;
+}
+
+tr:nth-child(1):hover {
+  background-color: white;
 }

@@ -17,7 +17,7 @@ function getBggData() {
   var uri = encodeURI(searchTerm);
   var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=" + type + "&query=" + uri
 
-  //Query the API
+  // Query the API
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -62,6 +62,7 @@ function updateExpansions() {
   }
 }
 
+// Once a user selects a game from the search results this funciton gets more detailed data about that specific game from BGG
 function getGameData(i) {
   //Query the API
   var xhttp = new XMLHttpRequest();
@@ -74,6 +75,27 @@ function getGameData(i) {
   xhttp.send();
 };
 
-function addGame(game) {
-  console.log(game);
-}
+// Once we have that game data we will use it to create a game in our app
+
+function addGame(gameData) {
+  var parser = new DOMParser();
+  var xmlDoc = parser.parseFromString(gameData,"text/xml");
+
+  let game = {
+    title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
+    play_time: xmlDoc.getElementsByTagName("minplaytime")[0].getAttribute("value") + " - " + xmlDoc.getElementsByTagName("maxplaytime")[0].getAttribute("value") + " min",
+    min_players: xmlDoc.getElementsByTagName("minplayers")[0].getAttribute("value"),
+    max_players: xmlDoc.getElementsByTagName("maxplayers")[0].getAttribute("value"),
+    description: xmlDoc.getElementsByTagName("description")[0].innerHTML,
+    image: xmlDoc.getElementsByTagName("image")[0].innerHTML
+  };
+
+  let promise = $.post(
+    "https://5d1ab237dd81710014e87d83.mockapi.io/Game", game
+  )
+
+  promise.then(
+    data => console.log('data: ', data),
+    error => console.log('error: ', error)
+  )
+};
