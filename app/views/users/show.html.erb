@@ -14,6 +14,16 @@
 </div>
 
 <div id= "games" class="row">
+  <div class="col">
+    <%= @user.games.count %> Games
+    <div>
+      <% if @user.games.any? %>
+        <ul>
+          <%= render @games %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <!-- New Game Modal -->

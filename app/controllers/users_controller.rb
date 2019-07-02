@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @game = current_user.games.build
+    @games = @user.games
   end
 
   def destroy
