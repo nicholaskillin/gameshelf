@@ -16,15 +16,13 @@
 <div id= "games" class="row">
   <div class="col">
     <%= @user.games.count %> Games
-    <div>
-      <% if @user.games.any? %>
-        <ul>
-          <%= render @games %>
-        </ul>
-      <% end %>
-    </div>
   </div>
 </div>
+<% if @user.games.any? %>
+  <div class="row">
+    <%= render @games %>
+  </div>
+<% end %>
 
 <!-- New Game Modal -->
 <div class="modal fade" id="newgame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

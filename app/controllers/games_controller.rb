@@ -4,8 +4,7 @@ class GamesController < ApplicationController
     @game = current_user.games.build(game_params)
     if @game.save
       flash[:success] = "Game created!"
-      redirect_to @game
-      logger.debug
+      redirect_to current_user, turbolinks: false
     else
       flash[:danger] = "There was a problem ¯\_(ツ)_/¯"
       redirect_to root_url

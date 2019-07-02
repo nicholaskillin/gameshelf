@@ -106,7 +106,4 @@ function addGame(gameData) {
       console.log(response);
     }
   });
-
-  // Reload the page
-  location.reload();
 }

@@ -1,7 +1,15 @@
-<li><%= game.title %>
-    <%= link_to "<i class=\"material-icons delete-icon\">delete</i>".html_safe, 
+<div class="col-sm-3">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="<%= game.image %>" alt="<%= game.title %> Artwork">
+    <div class="card-body">
+      <h5 class="card-title"><%= game.title %></h5>
+      <p class="card-text"><%= truncate(game.description, length: 150) %></p>
+      <a href="#" class="btn btn-primary">Details</a>
+      <%= link_to "<div class=\"material-icons delete-icon\">Delete</div>".html_safe, 
         game_path(game.id), 
         method: :delete, 
         data: { confirm: 'Are you sure you want to delete this?' },
-        class: "delete-link" %> 
-</li>
+        class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>
