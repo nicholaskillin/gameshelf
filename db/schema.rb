@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_193648) do
+ActiveRecord::Schema.define(version: 2019_07_03_135702) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
-    t.time "play_time"
+    t.string "play_time"
     t.integer "min_players"
     t.integer "max_players"
     t.text "description"
