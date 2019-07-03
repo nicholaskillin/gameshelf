@@ -5,7 +5,7 @@
       <h5 class="card-title"><%= game.title %></h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Players: <%= game.min_players %> - <%= game.max_players %></li>
-        <li class="list-group-item">Play Time: <%= game.play_time %></li>
+        <li class="list-group-item">Play Time: <%= game.min_play_time %> - <%= game.max_play_time %> min</li>
       </ul>
       <p class="card-text"><%= truncate(game.description, length: 150) %></p>
       <a href="#" class="btn btn-primary">Details</a>

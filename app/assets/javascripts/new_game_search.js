@@ -86,7 +86,8 @@ function addGame(gameData) {
 
   var game = {
     title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
-    play_time: xmlDoc.getElementsByTagName("minplaytime")[0].getAttribute("value") + " - " + xmlDoc.getElementsByTagName("maxplaytime")[0].getAttribute("value") + " min",
+    min_play_time: xmlDoc.getElementsByTagName("minplaytime")[0].getAttribute("value"),
+    max_play_time: xmlDoc.getElementsByTagName("maxplaytime")[0].getAttribute("value"),
     min_players: xmlDoc.getElementsByTagName("minplayers")[0].getAttribute("value"),
     max_players: xmlDoc.getElementsByTagName("maxplayers")[0].getAttribute("value"),
     description: xmlDoc.getElementsByTagName("description")[0].innerHTML,

@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_135702) do
+ActiveRecord::Schema.define(version: 2019_07_03_175140) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
-    t.string "play_time"
+    t.integer "min_play_time"
     t.integer "min_players"
     t.integer "max_players"
     t.text "description"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_07_03_135702) do
     t.string "playthrough_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "max_play_time"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
