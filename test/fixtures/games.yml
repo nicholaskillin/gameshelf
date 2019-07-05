@@ -1,23 +1,35 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: 1
   title: MyString
-  play_time: 2019-05-31 15:36:48
+  min_play_time: 30
+  max_play_time: 120
   min_players: 1
   max_players: 1
   description: MyText
   image: MyString
   rules_url: MyString
   playthrough_url: MyString
+  min_age: 2
+  best_number_of_players: 3
+  recommended_min_age: 4
+  bgg_number: 234
+  year_published: 1986
 
 two:
-  user: two
-  title: MyString
-  play_time: 2019-05-31 15:36:48
-  min_players: 1
-  max_players: 1
+  user: 2
+  title: MyStringTwo
+  min_play_time: 3
+  max_play_time: 10
+  min_players: 2
+  max_players: 6
   description: MyText
   image: MyString
   rules_url: MyString
   playthrough_url: MyString
+  min_age: 2
+  best_number_of_players: 3
+  recommended_min_age: 4
+  bgg_number: 2332
+  year_published: 1986
