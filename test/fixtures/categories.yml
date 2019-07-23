@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bgg_id: 
+  name: MyString
+
+two:
+  bgg_id: 
+  name: MyString
