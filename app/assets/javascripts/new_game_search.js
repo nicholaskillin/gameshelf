@@ -72,6 +72,7 @@ function getGameData(selectedGame) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       addGame(this.responseText);
+      // console.log(this.responseText);
     }
   };
   xhttp.open("GET", "https://www.boardgamegeek.com/xmlapi2/thing?id=" + selectedGame, true);
@@ -84,6 +85,27 @@ function addGame(gameData) {
   var parser = new DOMParser();
   var xmlDoc = parser.parseFromString(gameData,"text/xml");
 
+  // Check categories and create any new categories that need created
+  var gameCategories = [];
+
+  // for each category in the JSON push into gameCategories  
+  var x = xmlDoc.getElementsByTagName("link").length;
+  var i = 0
+  for (i = 0; i < x ; i++) { 
+    var type = xmlDoc.getElementsByTagName("link")[i].getAttribute("type");
+    if (type == "boardgamecategory") {
+      var categoryData = {
+        name: xmlDoc.getElementsByTagName("link")[i].getAttribute("value"),
+        bggid: xmlDoc.getElementsByTagName("link")[i].getAttribute("id")
+      };
+      gameCategories.push(categoryData);
+    }
+  }
+  console.log(gameCategories);
+
+  // Send to rails so that we can see if the category already exists or not
+
+  // Create game variable and submit to controller
   var game = {
     title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
     min_play_time: xmlDoc.getElementsByTagName("minplaytime")[0].getAttribute("value"),
