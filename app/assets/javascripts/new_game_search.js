@@ -96,7 +96,7 @@ function addGame(gameData) {
     if (type == "boardgamecategory") {
       var categoryData = {
         name: xmlDoc.getElementsByTagName("link")[i].getAttribute("value"),
-        bggid: xmlDoc.getElementsByTagName("link")[i].getAttribute("id")
+        bgg_id: xmlDoc.getElementsByTagName("link")[i].getAttribute("id")
       };
       gameCategories.push(categoryData);
     }
@@ -104,6 +104,24 @@ function addGame(gameData) {
   console.log(gameCategories);
 
   // Send to rails so that we can see if the category already exists or not
+  var x = gameCategories.length;
+  var i = 0;
+  for (i = 0; i < x; i++) {
+    
+    $.ajaxSetup({
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
+    
+    $.ajax({
+      url: '/categories',
+      type: 'POST',
+      dataType: 'json',
+      data: gameCategories[i],
+      success: function (response) {
+        console.log(response);
+      }
+    });
+  }
 
   // Create game variable and submit to controller
   var game = {

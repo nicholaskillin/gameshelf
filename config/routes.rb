@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   post '/games', to: 'games#create'
+  post '/categories', to: 'categories#create'
   resources  :users
   resources  :password_resets, only: [:new, :create, :edit, :update]
   resources :account_activations, only: [:edit]
   resources :games, only: [:create, :edit, :update, :destroy]
+  resources :categories, only: [:create]
+
 end
