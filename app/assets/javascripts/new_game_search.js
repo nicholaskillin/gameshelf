@@ -105,8 +105,7 @@ function addGame(gameData) {
   // Send to rails so that we can see if the category already exists or not. Category gets created in controller if it doesn't already exist.
   var x = gameCategories.length;
   var i = 0;
-  for (i = 0; i < x; i++) {
-    
+  for (i = 0; i < x; i++) { 
     $.ajaxSetup({
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     });
@@ -142,7 +141,22 @@ function addGame(gameData) {
     }
   }
 
-  console.log(gameMechanics);
+  var i = 0;
+  for (i = 0; i < gameMechanics.length; i++) { 
+    $.ajaxSetup({
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
+    
+    $.ajax({
+      url: '/mechanics',
+      type: 'POST',
+      dataType: 'json',
+      data: gameMechanics[i],
+      success: function (response) {
+        console.log(response);
+      }
+    });
+  }
 
   // Create game variable and submit to controller
   var game = {
