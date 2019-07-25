@@ -1,8 +1,16 @@
 class GamesController < ApplicationController
   def create
-    logger.debug 'game_params'
-    @game = current_user.games.build(game_params)
+    
+    @categories = game_params[:categories]
+    @game = current_user.games.build(game_params.except(:categories))
+    
     if @game.save
+      
+      @categories.each do |category|
+        category_to_add = Category.find_by(bgg_id: category)
+        @game.categories << category_to_add
+      end
+      
       flash[:success] = "Game created!"
       redirect_to current_user, turbolinks: false
     else
@@ -23,6 +31,6 @@ class GamesController < ApplicationController
   private
 
     def game_params
-      params.permit(:title, :description, :image, :min_play_time, :max_play_time, :min_players, :max_players)
+      params.permit(:title, :description, :image, :min_play_time, :max_play_time, :min_players, :max_players, categories: [])
     end
 end

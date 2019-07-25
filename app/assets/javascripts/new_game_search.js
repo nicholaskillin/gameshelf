@@ -101,9 +101,8 @@ function addGame(gameData) {
       gameCategories.push(categoryData);
     }
   }
-  console.log(gameCategories);
 
-  // Send to rails so that we can see if the category already exists or not
+  // Send to rails so that we can see if the category already exists or not. Category gets created in controller if it doesn't already exist.
   var x = gameCategories.length;
   var i = 0;
   for (i = 0; i < x; i++) {
@@ -123,6 +122,12 @@ function addGame(gameData) {
     });
   }
 
+  // Get BGG ID's for categories into an array for Games Controller
+  var category_bgg_ids = []
+  for (i = 0; i < gameCategories.length; i++) {
+    category_bgg_ids.push(gameCategories[i].bgg_id)
+  }
+
   // Create game variable and submit to controller
   var game = {
     title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
@@ -131,7 +136,8 @@ function addGame(gameData) {
     min_players: xmlDoc.getElementsByTagName("minplayers")[0].getAttribute("value"),
     max_players: xmlDoc.getElementsByTagName("maxplayers")[0].getAttribute("value"),
     description: xmlDoc.getElementsByTagName("description")[0].innerHTML,
-    image: xmlDoc.getElementsByTagName("image")[0].innerHTML
+    image: xmlDoc.getElementsByTagName("image")[0].innerHTML,
+    categories: category_bgg_ids
   };
 
   $.ajaxSetup({
@@ -147,4 +153,6 @@ function addGame(gameData) {
       console.log(response);
     }
   });
+
+  // Send categories to games controller to join them together
 }
