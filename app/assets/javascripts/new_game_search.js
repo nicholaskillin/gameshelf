@@ -158,6 +158,12 @@ function addGame(gameData) {
     });
   }
 
+  // Get BGG ID's for categories into an array for Games Controller
+  var mechanic_bgg_ids = []
+  for (i = 0; i < gameMechanics.length; i++) {
+    mechanic_bgg_ids.push(gameMechanics[i].bgg_id)
+  }
+
   // Create game variable and submit to controller
   var game = {
     title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
@@ -167,7 +173,8 @@ function addGame(gameData) {
     max_players: xmlDoc.getElementsByTagName("maxplayers")[0].getAttribute("value"),
     description: xmlDoc.getElementsByTagName("description")[0].innerHTML,
     image: xmlDoc.getElementsByTagName("image")[0].innerHTML,
-    categories: category_bgg_ids
+    categories: category_bgg_ids,
+    mechanics: mechanic_bgg_ids
   };
 
   $.ajaxSetup({
