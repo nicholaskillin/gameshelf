@@ -128,6 +128,22 @@ function addGame(gameData) {
     category_bgg_ids.push(gameCategories[i].bgg_id)
   }
 
+  // Check mechanics and create any new mechanics that don't already exist
+  var gameMechanics = [];
+
+  var i = 0
+  for (i = 0; i < xmlDoc.getElementsByTagName("link").length; i++){
+    if (xmlDoc.getElementsByTagName("link")[i].getAttribute("type") == "boardgamemechanic"){
+      var mechanicData = {
+        name: xmlDoc.getElementsByTagName("link")[i].getAttribute("value"),
+        bgg_id: xmlDoc.getElementsByTagName("link")[i].getAttribute("id")
+      }
+      gameMechanics.push(mechanicData);
+    }
+  }
+
+  console.log(gameMechanics);
+
   // Create game variable and submit to controller
   var game = {
     title: xmlDoc.getElementsByTagName("name")[0].getAttribute("value"),
