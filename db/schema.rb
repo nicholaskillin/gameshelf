@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_23_012620) do
+ActiveRecord::Schema.define(version: 2019_07_25_120612) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "bgg_id"
@@ -45,6 +45,20 @@ ActiveRecord::Schema.define(version: 2019_07_23_012620) do
     t.integer "bgg_number"
     t.integer "year_published"
     t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "games_mechanics", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "mechanic_id", null: false
+    t.index ["game_id", "mechanic_id"], name: "index_games_mechanics_on_game_id_and_mechanic_id"
+    t.index ["mechanic_id", "game_id"], name: "index_games_mechanics_on_mechanic_id_and_game_id"
+  end
+
+  create_table "mechanics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.bigint "bgg_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
