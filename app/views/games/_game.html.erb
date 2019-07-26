@@ -6,6 +6,20 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Players: <%= game.min_players %> - <%= game.max_players %></li>
         <li class="list-group-item">Play Time: <%= game.min_play_time %> - <%= game.max_play_time %> min</li>
+        <% if game.categories.length > 0 %>
+          <li class="list-group-item">Categories: 
+            <% game.categories.each do |category| %>
+              <%= category.name %><% if (category != game.categories.last) %>,<% end %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if game.mechanics.length > 0 %>
+          <li class="list-group-item">Mechanics:
+            <% game.mechanics.each do |mechanic| %>
+              <%= mechanic.name %><% if (mechanic != game.mechanics.last) %>,<% end %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
       <p class="card-text"><%= truncate(game.description, length: 150) %></p>
       <a href="#" class="btn btn-primary">Details</a>

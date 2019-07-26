@@ -40,7 +40,7 @@ function displayData(xml) {
   for (i = 0; i < x ; i++) { 
     table += "<tr onclick=\"getGameData(" + xmlDoc.getElementsByTagName("item")[i].getAttribute("id") + ")\"><td>" +
     xmlDoc.getElementsByTagName("name")[i].getAttribute("value") +
-    "</td><td>" +
+    "</td><td>" + 
     xmlDoc.getElementsByTagName("yearpublished")[i].getAttribute("value") + 
     "</td></tr>";
   }
