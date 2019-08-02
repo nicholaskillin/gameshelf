@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_120612) do
+ActiveRecord::Schema.define(version: 2019_08_02_020718) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "bgg_id"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 2019_07_25_120612) do
     t.bigint "game_id", null: false
     t.index ["category_id", "game_id"], name: "index_categories_games_on_category_id_and_game_id"
     t.index ["game_id", "category_id"], name: "index_categories_games_on_game_id_and_category_id"
+  end
+
+  create_table "game_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.string "rules_video"
+    t.boolean "available", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_users_on_game_id"
+    t.index ["user_id"], name: "index_game_users_on_user_id"
   end
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
