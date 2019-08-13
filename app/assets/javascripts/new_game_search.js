@@ -51,14 +51,14 @@ function displayData(xml) {
 // Makes sure that Board Games or Expansions are always selected in the search params
 
 function updateGames() {
-  if (document.getElementById("searchBoardGames").checked == false && document.getElementById("searchExpansions").checked == false) {
-    document.getElementById("searchExpansions").checked = true;
+  if ($("#searchBoardGames").prop('checked') == false && $("#searchExpansions").prop('checked') == false) {
+    $("#searchExpansions").prop('checked', true);
   }
 }
 
 function updateExpansions() {
-  if (document.getElementById("searchBoardGames").checked == false && document.getElementById("searchExpansions").checked == false) {
-    document.getElementById("searchBoardGames").checked = true;
+  if ($("#searchBoardGames").prop('checked') == false && $("#searchExpansions").prop('checked') == false) {
+    $("#searchBoardGames").prop('checked', true);
   }
 }
 
@@ -72,7 +72,6 @@ function getGameData(selectedGame) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       addGame(this.responseText);
-      // console.log(this.responseText);
     }
   };
   xhttp.open("GET", "https://www.boardgamegeek.com/xmlapi2/thing?id=" + selectedGame, true);
