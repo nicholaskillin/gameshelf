@@ -17,8 +17,7 @@ class GamesController < ApplicationController
         @game.mechanics << mechanic_to_add
       end
       
-      flash[:success] = "Game created!"
-      redirect_to current_user, turbolinks: false
+      render json: {game_id: @game.id}
     else
       flash[:danger] = "There was a problem ¯\_(ツ)_/¯"
       redirect_to root_url

@@ -13,13 +13,13 @@
   </div>
 </div>
 
-<div id= "games" class="row">
+<div class="row">
   <div class="col">
     <%= @user.games.count %> Games
   </div>
 </div>
 <% if @user.games.any? %>
-  <div class="row">
+  <div id= "games" class="row" >
     <%= render @games %>
   </div>
 <% end %>

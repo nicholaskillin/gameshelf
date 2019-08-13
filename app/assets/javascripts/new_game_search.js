@@ -13,7 +13,7 @@ function getBggData() {
   }
 
   // Get search term and create the API URL to query
-  var searchTerm = document.getElementById("searchTerm").value;
+  var searchTerm = $("#searchTerm").val();
   var uri = encodeURI(searchTerm);
   var httpURL = "https://www.boardgamegeek.com/xmlapi2/search?type=" + type + "&query=" + uri;
 
@@ -187,9 +187,7 @@ function addGame(gameData) {
     dataType: 'json',
     data: game,
     success: function (response) {
-      console.log(response);
+      location.reload();
     }
   });
-
-  // Send categories to games controller to join them together
 }
