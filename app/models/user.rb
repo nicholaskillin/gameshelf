@@ -3,6 +3,7 @@ class User < ApplicationRecord
   attr_accessor :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
+  has_many :game_users
   has_many :games, through: :game_users
 
   has_secure_password
