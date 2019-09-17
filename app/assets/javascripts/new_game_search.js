@@ -38,7 +38,7 @@ function displayData(xml) {
   var table = "<tr><th>Game</th><th>Year Released</th></tr>";
   var x = xmlDoc.getElementsByTagName("item").length;
   for (i = 0; i < x ; i++) { 
-    var gameTitle = (xmlDoc.getElementsByTagName("name")[i].getAttribute("value")) ? xmlDoc.getElementsByTagName("name")[i].getAttribute("value") : "No Title";
+    var gameTitle = (xmlDoc.getElementsByTagName("name")[i]) ? xmlDoc.getElementsByTagName("name")[i].getAttribute("value") : "No Title";
     var gameYearPublished = (xmlDoc.getElementsByTagName("yearpublished")[i]) ? xmlDoc.getElementsByTagName("yearpublished")[i].getAttribute("value") : "";
 
     table += "<tr onclick=\"getGameData(" + xmlDoc.getElementsByTagName("item")[i].getAttribute("id") + ")\"><td>" +
