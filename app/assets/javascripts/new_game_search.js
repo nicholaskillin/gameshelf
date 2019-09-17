@@ -187,7 +187,7 @@ function addGame(gameData) {
     dataType: 'json',
     data: game,
     success: function (response) {
-      console.log(response);
+      location.reload();
     }
   });
 
