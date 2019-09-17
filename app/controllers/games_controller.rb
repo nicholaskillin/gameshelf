@@ -27,9 +27,9 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    # @game = current_user.games.find(params[:id])
-    # @game.destroy
-    # redirect_to current_user
+    @game = current_user.games.find(params[:id])
+    current_user.games.delete(@game)
+    redirect_to current_user
   end
 
   private
