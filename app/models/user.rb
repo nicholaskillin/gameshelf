@@ -4,7 +4,7 @@ class User < ApplicationRecord
   before_save   :downcase_email
   before_create :create_activation_digest
   has_many :game_users
-  has_many :games, through: :game_users
+  has_many :games, through: :game_users, dependent: :destroy
 
   has_secure_password
 
