@@ -1,5 +1,24 @@
 'use strict';
 
+// JS for modal behavior
+$( document ).ready(function() {
+  // Set focus in modal
+  $('#newGame').on('shown.bs.modal', function() {
+    $('#searchTerm').focus();
+  })
+
+  // Prevent modal from closing on submission
+  $('#newGame').submit(function(e) { 
+    e.preventDefault();
+  });
+
+  // Clear text input when modal is dismissed
+  $('#newGame').on('hidden.bs.modal', function() {
+    $('input:text').val('');
+  })
+
+});
+
 // Gets the Data from BoardGame Geek
 
 function getBggData() {
@@ -65,7 +84,7 @@ function updateExpansions() {
 // Once a user selects a game from the search results this funciton gets more detailed data about that specific game from BGG
 function getGameData(selectedGame) {
   // Close the new game modal
-  $('#newgame').modal('hide');
+  $('#newGame').modal('hide');
 
   // Query the API
   var xhttp = new XMLHttpRequest();

@@ -7,7 +7,7 @@
   <div id="user-name" class="center"><%= @user.name %></div>
   <!--Button to trigger new game modal-->
   <div class="col">
-    <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newgame">
+    <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGame">
       New Game
     </button>
   </div>
@@ -25,7 +25,7 @@
 <% end %>
 
 <!-- New Game Modal -->
-<div class="modal fade" id="newgame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -42,7 +42,7 @@
                 <input type="text" class="form-control" placeholder="Search BGG" id="searchTerm">
               </div>
               <div class="col">
-                <button type="button" class="btn btn-primary" onclick="getBggData()">Search</button>
+                <button class="btn btn-primary" onclick="getBggData()">Search</button>
               </div>
             </div>
             <div class="form-row">
