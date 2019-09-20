@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'games/create'
   get 'games/update'
   get 'games/destroy'
+  get 'games/details'
   get 'sessions/new'
   root 'static_pages#home'
   get '/signup', to: 'users#new'

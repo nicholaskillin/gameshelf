@@ -23,6 +23,11 @@ class GamesController < ApplicationController
 
   end
 
+  def details
+    game = Game.find(params[:id])
+    render json: {game: game}
+  end
+
   def update
   end
 
