@@ -1,19 +1,18 @@
 class CategoriesController < ApplicationController
 
   def create
-    # logger.debug 'category_params'
-    @category = Category.find_or_initialize_by(category_params)
-    if @category.save
-      logger.debug "Category Saved"
-    else
-      flash[:danger] = "There was a problem creating one of the game categories ¯\_(ツ)_/¯"
-      redirect_to root_url
+    
+    category_params[:categories].each do |param|
+      Category.find_or_create_by(param[1])
     end
+
+    render json: {category_params[:categories] => []}
+
   end
 
   private
 
     def category_params
-      params.permit(:name, :bgg_id)
+      params.permit(categories: [:name, :bgg_id])
     end
 end
