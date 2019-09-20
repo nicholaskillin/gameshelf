@@ -1,31 +1,5 @@
-<div class="row profile-header">
-  <% if @user.name == "Nope" %>
-    <div class="user-avatar">Profile Image</div>
-  <% else %>
-    <%= image_tag("users/placeholder-avatar.png", :alt => "placeholder profile image", :class => "user-avatar") %>
-  <% end %>
-  <div id="user-name" class="center"><%= @user.name %></div>
-  <!--Button to trigger new game modal-->
-  <div class="col">
-    <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGame">
-      New Game
-    </button>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <%= @user.games.count %> Games
-  </div>
-</div>
-<% if @user.games.any? %>
-  <div id= "games" class="row" >
-    <%= render @games %>
-  </div>
-<% end %>
-
-<!-- New Game Modal -->
-<div class="modal fade" id="newGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Game Details Modal -->
+<div class="modal fade" id="gameDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -72,5 +46,3 @@
     </div>
   </div>
 </div>
-
-<%= render 'games/gameDetailsModal' %>
