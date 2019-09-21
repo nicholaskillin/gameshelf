@@ -21,9 +21,8 @@ $( document ).ready(function() {
       dataType: 'json',
       data: { id: gameID },
       success: function (response) {
-        // let game = response.game
-        // console.log(response);
-        // modal.find('#gameDataTitle').text(game.title)
+        let game = response.game
+        modal.find('#gameDataTitle').text(game.title)
         // modal.find('#gameDetailsArtwork').attr("src", game.image)
         // cleanDesc = game.description.replace('&#10;', "<br>");
         // modal.find('#gameDetailsDescription').append(cleanDesc)
