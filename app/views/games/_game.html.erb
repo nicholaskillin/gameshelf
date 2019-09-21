@@ -10,7 +10,7 @@
       <p class="card-text"><%= truncate(game.description, length: 150) %></p>
       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#gameDetailsModal" id="<%= game.id %>">Details</a>
       <%= link_to "<div class=\"material-icons delete-icon\">Delete</div>".html_safe, 
-        game_path(game.id), 
+        games_path(id: game.id), 
         method: :delete, 
         data: { confirm: 'Are you sure you want to delete this?' },
         class: "btn btn-danger" %>

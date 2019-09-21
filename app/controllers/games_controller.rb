@@ -23,6 +23,11 @@ class GamesController < ApplicationController
 
   end
 
+  def index
+    @user = current_user
+    @games = current_user.games
+  end
+
   def details
     game = Game.find(params[:id])
     render json: {game: game}
@@ -34,7 +39,7 @@ class GamesController < ApplicationController
   def destroy
     @game = current_user.games.find(params[:id])
     current_user.games.delete(@game)
-    redirect_to current_user
+    redirect_to user_games_url(user_id: current_user.id)
   end
 
   private

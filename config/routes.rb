@@ -13,12 +13,14 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   post '/games', to: 'games#create'
+  delete '/games', to: 'games#destroy'
   post '/categories', to: 'categories#create'
   post '/mechanics', to: 'mechanics#create'
-  resources  :users
+  resources :users do
+    resources :games, only: [:index, :create, :edit, :update, :destroy]
+  end
   resources  :password_resets, only: [:new, :create, :edit, :update]
   resources :account_activations, only: [:edit]
-  resources :games, only: [:create, :edit, :update, :destroy]
   resources :categories, only: [:create]
   resources :mechanics, only: [:create]
 
