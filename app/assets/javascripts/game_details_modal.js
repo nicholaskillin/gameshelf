@@ -1,3 +1,5 @@
+'use strict';
+
 $( document ).ready(function() {
   $('#gameDetailsModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
@@ -19,25 +21,25 @@ $( document ).ready(function() {
       dataType: 'json',
       data: { id: gameID },
       success: function (response) {
-        let game = response.game
-        console.log(response);
-        modal.find('#gameDataTitle').text(game.title)
-        modal.find('#gameDetailsArtwork').attr("src", game.image)
-        cleanDesc = game.description.replace('&#10;', "<br>");
-        modal.find('#gameDetailsDescription').append(cleanDesc)
+        // let game = response.game
+        // console.log(response);
+        // modal.find('#gameDataTitle').text(game.title)
+        // modal.find('#gameDetailsArtwork').attr("src", game.image)
+        // cleanDesc = game.description.replace('&#10;', "<br>");
+        // modal.find('#gameDetailsDescription').append(cleanDesc)
         
-        // Adds player count to game details modal
-        modal.find('#gameDataPlayerCount').html('<strong>Players:</strong>' + " " + game.min_players)
-        if (game.min_players != game.max_players) {
-          modal.find('#gameDataPlayerCount').append(" - " + game.max_players)
-        }
+        // // Adds player count to game details modal
+        // modal.find('#gameDataPlayerCount').html('<strong>Players:</strong>' + " " + game.min_players)
+        // if (game.min_players != game.max_players) {
+        //   modal.find('#gameDataPlayerCount').append(" - " + game.max_players)
+        // }
         
-        // Adds play time to game details modal
-        modal.find('#gameDataPlayTime').html('<strong>Play Time:</strong>' + " " + game.min_play_time)
-        if (game.min_play_time != game.max_play_time) {
-          modal.find('#gameDataPlayTime').append(" - " + game.max_play_time)
-        }
-        modal.find('#gameDataPlayTime').append(" min.")
+        // // Adds play time to game details modal
+        // modal.find('#gameDataPlayTime').html('<strong>Play Time:</strong>' + " " + game.min_play_time)
+        // if (game.min_play_time != game.max_play_time) {
+        //   modal.find('#gameDataPlayTime').append(" - " + game.max_play_time)
+        // }
+        // modal.find('#gameDataPlayTime').append(" min.")
       }
     });
   })
