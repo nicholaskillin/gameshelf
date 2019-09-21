@@ -5,9 +5,11 @@
     </button>
     <%= link_to "Game Shelf", root_path, class: "navbar-brand" %>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Games", user_games_url(user_id: current_user.id), class: "nav-link" %>
-      </li>
+      <% if logged_in? %>
+        <li class="nav-item">
+          <%= link_to "Games", user_games_url(user_id: current_user.id), class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
     <ul class="navbar-nav">
       <% if logged_in? %> 
