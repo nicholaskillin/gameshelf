@@ -6,7 +6,7 @@ $(document).ready(() => {
   });
 
   // Prevent modal from closing on submission
-  $('#newGame').submit(function(e) { 
+  $('#newGame').submit((e) => {
     e.preventDefault();
   });
 
