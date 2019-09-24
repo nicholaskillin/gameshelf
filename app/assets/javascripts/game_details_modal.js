@@ -4,6 +4,8 @@ $(document).ready(function () {
     // const gameID = button.attr('id'); // Extract info from data-* attributes
     // const modal = $(this);
 
+    console.log(button);
+
     // Get game data
     // $.ajaxSetup({
     //   headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
