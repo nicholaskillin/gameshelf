@@ -1,44 +1,38 @@
-'use strict';
-
-$( document ).ready(function() {
+$(document).ready(() => {
   $('#gameDetailsModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var gameID = button.attr('id') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
+    const button = $(event.relatedTarget); // Button that triggered the modal
+    const gameID = button.attr('id'); // Extract info from data-* attributes
+    const modal = $(this);
 
     // Get game data
     $.ajaxSetup({
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
     });
-    
-    var response = "";
 
     $.ajax({
       url: '/games/details',
       type: 'GET',
       dataType: 'json',
       data: { id: gameID },
-      success: function (response) {
-        modal.find('#gameDataTitle').text(response.game.title)
-        modal.find('#gameDetailsArtwork').attr("src", response.game.image)
-        cleanDesc = response.game.description.replace('&#10;', "<br>");
-        modal.find('#gameDetailsDescription').append(cleanDesc)
-        
+      success(response) {
+        modal.find('#gameDataTitle').text(response.game.title);
+        modal.find('#gameDetailsArtwork').attr('src', response.game.image);
+        const cleanDesc = response.game.description.replace('&#10;', '<br>');
+        modal.find('#gameDetailsDescription').append(cleanDesc);
+
         // Adds player count to game details modal
-        modal.find('#gameDataPlayerCount').html('<strong>Players:</strong>' + " " + response.game.min_players)
-        if (response.game.min_players != response.game.max_players) {
-          modal.find('#gameDataPlayerCount').append(" - " + response.game.max_players)
+        modal.find('#gameDataPlayerCount').html(`<strong>Players:</strong> ${response.game.min_players}`);
+        if (response.game.min_players !== response.game.max_players) {
+          modal.find('#gameDataPlayerCount').append(` - ${response.game.max_players}`);
         }
-        
+
         // Adds play time to game details modal
-        modal.find('#gameDataPlayTime').html('<strong>Play Time:</strong>' + " " + response.game.min_play_time)
-        if (response.game.min_play_time != response.game.max_play_time) {
-          modal.find('#gameDataPlayTime').append(" - " + response.game.max_play_time)
+        modal.find('#gameDataPlayTime').html(`<strong>Play Time:</strong> ${response.game.min_play_time}`);
+        if (response.game.min_play_time !== response.game.max_play_time) {
+          modal.find('#gameDataPlayTime').append(` - ${response.game.max_play_time}`);
         }
-        modal.find('#gameDataPlayTime').append(" min.")
-      }
+        modal.find('#gameDataPlayTime').append(' min.');
+      },
     });
-  })
-})
+  });
+});
