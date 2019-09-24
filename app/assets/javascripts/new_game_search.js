@@ -1,11 +1,9 @@
-'use strict';
-
 // JS for modal behavior
-$( document ).ready(function() {
+$(document).ready(() => {
   // Set focus in modal
-  $('#newGame').on('shown.bs.modal', function() {
+  $('#newGame').on('shown.bs.modal', () => {
     $('#searchTerm').focus();
-  })
+  });
 
   // Prevent modal from closing on submission
   $('#newGame').submit(function(e) { 
