@@ -14,7 +14,7 @@ $(document).ready(function () {
       type: 'GET',
       dataType: 'json',
       data: { id: gameID },
-      success(response) {
+      success: function (response) {
         modal.find('#gameDataTitle').text(response.game.title);
         modal.find('#gameDetailsArtwork').attr('src', response.game.image);
         const cleanDesc = response.game.description.replace('&#10;', '<br>');
