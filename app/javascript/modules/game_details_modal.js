@@ -1,6 +1,6 @@
 export default { gameDetails: true }
 
-$(document).ready(function () {
+$(document).ready(() => {
   $('#gameDetailsModal').on('show.bs.modal', function (event) {
     const button = $(event.relatedTarget); // Button that triggered the modal
     const gameID = button.attr('id'); // Extract info from data-* attributes
@@ -16,7 +16,7 @@ $(document).ready(function () {
       type: 'GET',
       dataType: 'json',
       data: { id: gameID },
-      success: function (response) {
+      success(response) {
         modal.find('#gameDataTitle').text(response.game.title);
         modal.find('#gameDetailsArtwork').attr('src', response.game.image);
         const cleanDesc = response.game.description.replace('&#10;', '<br>');
