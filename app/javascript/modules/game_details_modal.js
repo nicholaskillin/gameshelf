@@ -1,4 +1,4 @@
-export default { gameDetails: true }
+export default { gameDetails: true };
 
 $(document).ready(() => {
   $('#gameDetailsModal').on('show.bs.modal', function (event) {

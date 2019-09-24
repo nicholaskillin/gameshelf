@@ -20,3 +20,4 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import gameDetails from 'modules/game_details_modal';
+import gameSearch from 'modules/new_game_search';
