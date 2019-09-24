@@ -80,24 +80,24 @@ $(document).ready(() => {
 
   // test Function scope
   function gameSelected() {
-    $('tr').slice(1).click(function getGameData(e) {
-    selectedGame = e.currentTarget.attributes[0].value;
+    $('tr').slice(1).click((e) => {
+      const selectedGame = e.currentTarget.attributes[0].value;
       // Close the new game modal
-    $('#newGame').modal('hide');
+      $('#newGame').modal('hide');
 
-    // Query the API
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        addGame(this.responseText);
-      }
-    };
-    xhttp.open('GET', `https://www.boardgamegeek.com/xmlapi2/thing?id=${selectedGame}`, true);
-    xhttp.send();
-  })
+      // Query the API
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          addGame(this.responseText);
+        }
+      };
+      xhttp.open('GET', `https://www.boardgamegeek.com/xmlapi2/thing?id=${selectedGame}`, true);
+      xhttp.send();
+    });
 
-  // Once we have that game data we will use it to create a game in our app
-  function addGame(gameData) {
+    // Once we have that game data we will use it to create a game in our app
+    function addGame(gameData) {
     // Declaring some variables that we will need in the process
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(gameData, 'text/xml');
@@ -207,5 +207,6 @@ $(document).ready(() => {
         },
       });
     }
+    }
   }
-}});
+});
