@@ -1,3 +1,5 @@
+export default { gameDetails: true }
+
 $(document).ready(function () {
   $('#gameDetailsModal').on('show.bs.modal', function (event) {
     const button = $(event.relatedTarget); // Button that triggered the modal
@@ -38,3 +40,5 @@ $(document).ready(function () {
     // });
   });
 });
+
+console.log('Still working');
