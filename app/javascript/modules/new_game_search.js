@@ -17,7 +17,7 @@ $(document).ready(() => {
 
   // Gets the Data from BoardGame Geek
 
-  $('#bggSearch').click(function getBggData() {
+  $('#bggSearch').click(() => {
     let type = '';
 
     // Finds out if we are searching Board Games, Expansions, or both
@@ -43,7 +43,7 @@ $(document).ready(() => {
     };
     xhttp.open('GET', httpURL, true);
     xhttp.send();
-  })
+  });
 
   // Displays the data after the API query comes back
   function displayData(xml) {
