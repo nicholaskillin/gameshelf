@@ -6,7 +6,7 @@ $(document).ready(function () {
     const gameID = button.attr('id'); // Extract info from data-* attributes
     const modal = $(this);
 
-    Get game data
+    // Get game data
     $.ajaxSetup({
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
     });
