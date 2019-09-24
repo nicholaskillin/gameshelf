@@ -98,115 +98,115 @@ $(document).ready(() => {
 
     // Once we have that game data we will use it to create a game in our app
     function addGame(gameData) {
-    // Declaring some variables that we will need in the process
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(gameData, 'text/xml');
-    const mechanicBggIds = [];
-    const categoryBggIds = [];
+      // Declaring some variables that we will need in the process
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(gameData, 'text/xml');
+      const mechanicBggIds = [];
+      const categoryBggIds = [];
 
-    createCategories();
+      createCategories();
 
-    function createCategories() {
-      const gameCategories = [];
+      function createCategories() {
+        const gameCategories = [];
 
-      // for each category in the JSON push into categoryData
-      const x = xmlDoc.getElementsByTagName('link').length;
-      for (let i = 0; i < x; i += 1) {
-        const type = xmlDoc.getElementsByTagName('link')[i].getAttribute('type');
-        if (type === 'boardgamecategory') {
-          const categoryData = {
-            name: xmlDoc.getElementsByTagName('link')[i].getAttribute('value'),
-            bgg_id: xmlDoc.getElementsByTagName('link')[i].getAttribute('id'),
-          };
-          gameCategories.push(categoryData);
+        // for each category in the JSON push into categoryData
+        const x = xmlDoc.getElementsByTagName('link').length;
+        for (let i = 0; i < x; i += 1) {
+          const type = xmlDoc.getElementsByTagName('link')[i].getAttribute('type');
+          if (type === 'boardgamecategory') {
+            const categoryData = {
+              name: xmlDoc.getElementsByTagName('link')[i].getAttribute('value'),
+              bgg_id: xmlDoc.getElementsByTagName('link')[i].getAttribute('id'),
+            };
+            gameCategories.push(categoryData);
+          }
+        }
+
+        // Sending categoryData array to controller for creation if needed
+
+        $.ajaxSetup({
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        });
+
+        $.ajax({
+          url: '/categories',
+          type: 'POST',
+          dataType: 'json',
+          data: { categories: gameCategories },
+          success(response) {
+            createMechanics();
+          },
+        });
+
+        // Collect BGG ID's for each category to send to game controller later
+        for (let i = 0; i < gameCategories.length; i += 1) {
+          categoryBggIds.push(gameCategories[i].bgg_id);
         }
       }
 
-      // Sending categoryData array to controller for creation if needed
+      function createMechanics() {
+        const gameMechanics = [];
 
-      $.ajaxSetup({
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-      });
+        // for each mechanic in the JSON push into mechanicData
+        for (let i = 0; i < xmlDoc.getElementsByTagName('link').length; i += 1) {
+          if (xmlDoc.getElementsByTagName('link')[i].getAttribute('type') === 'boardgamemechanic') {
+            const mechanicData = {
+              name: xmlDoc.getElementsByTagName('link')[i].getAttribute('value'),
+              bgg_id: xmlDoc.getElementsByTagName('link')[i].getAttribute('id'),
+            };
+            gameMechanics.push(mechanicData);
+          }
+        }
 
-      $.ajax({
-        url: '/categories',
-        type: 'POST',
-        dataType: 'json',
-        data: { categories: gameCategories },
-        success(response) {
-          createMechanics();
-        },
-      });
+        // Sending mechanicData array to controller for creation if needed
+        $.ajaxSetup({
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        });
 
-      // Collect BGG ID's for each category to send to game controller later
-      for (let i = 0; i < gameCategories.length; i += 1) {
-        categoryBggIds.push(gameCategories[i].bgg_id);
-      }
-    }
+        $.ajax({
+          url: '/mechanics',
+          type: 'POST',
+          dataType: 'json',
+          data: { mechanics: gameMechanics },
+          success(response) {
+            createGame();
+          },
+        });
 
-    function createMechanics() {
-      const gameMechanics = [];
-
-      // for each mechanic in the JSON push into mechanicData
-      for (let i = 0; i < xmlDoc.getElementsByTagName('link').length; i += 1) {
-        if (xmlDoc.getElementsByTagName('link')[i].getAttribute('type') === 'boardgamemechanic') {
-          const mechanicData = {
-            name: xmlDoc.getElementsByTagName('link')[i].getAttribute('value'),
-            bgg_id: xmlDoc.getElementsByTagName('link')[i].getAttribute('id'),
-          };
-          gameMechanics.push(mechanicData);
+        // Collect BGG ID's for each mechanic to send to game controller later
+        for (let i = 0; i < gameMechanics.length; i += 1) {
+          mechanicBggIds.push(gameMechanics[i].bgg_id);
         }
       }
 
-      // Sending mechanicData array to controller for creation if needed
-      $.ajaxSetup({
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-      });
+      function createGame() {
+        // Create game variable and submit to controller
+        const game = {
+          title: xmlDoc.getElementsByTagName('name')[0].getAttribute('value'),
+          min_play_time: xmlDoc.getElementsByTagName('minplaytime')[0].getAttribute('value'),
+          max_play_time: xmlDoc.getElementsByTagName('maxplaytime')[0].getAttribute('value'),
+          min_players: xmlDoc.getElementsByTagName('minplayers')[0].getAttribute('value'),
+          max_players: xmlDoc.getElementsByTagName('maxplayers')[0].getAttribute('value'),
+          description: xmlDoc.getElementsByTagName('description')[0].innerHTML,
+          image: xmlDoc.getElementsByTagName('image')[0].innerHTML,
+          categories: categoryBggIds,
+          mechanics: mechanicBggIds,
+        };
 
-      $.ajax({
-        url: '/mechanics',
-        type: 'POST',
-        dataType: 'json',
-        data: { mechanics: gameMechanics },
-        success(response) {
-          createGame();
-        },
-      });
+        $.ajaxSetup({
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        });
 
-      // Collect BGG ID's for each mechanic to send to game controller later
-      for (let i = 0; i < gameMechanics.length; i += 1) {
-        mechanicBggIds.push(gameMechanics[i].bgg_id);
+        $.ajax({
+          url: '/games',
+          type: 'POST',
+          dataType: 'json',
+          data: game,
+          success(response) {
+            location.reload();
+          },
+        });
       }
-    }
-
-    function createGame() {
-      // Create game variable and submit to controller
-      const game = {
-        title: xmlDoc.getElementsByTagName('name')[0].getAttribute('value'),
-        min_play_time: xmlDoc.getElementsByTagName('minplaytime')[0].getAttribute('value'),
-        max_play_time: xmlDoc.getElementsByTagName('maxplaytime')[0].getAttribute('value'),
-        min_players: xmlDoc.getElementsByTagName('minplayers')[0].getAttribute('value'),
-        max_players: xmlDoc.getElementsByTagName('maxplayers')[0].getAttribute('value'),
-        description: xmlDoc.getElementsByTagName('description')[0].innerHTML,
-        image: xmlDoc.getElementsByTagName('image')[0].innerHTML,
-        categories: categoryBggIds,
-        mechanics: mechanicBggIds,
-      };
-
-      $.ajaxSetup({
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-      });
-
-      $.ajax({
-        url: '/games',
-        type: 'POST',
-        dataType: 'json',
-        data: game,
-        success(response) {
-          location.reload();
-        },
-      });
-    }
     }
   }
 });
