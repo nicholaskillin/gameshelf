@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready( function () {
 //   $('#gameDetailsModal').on('show.bs.modal', function (event) {
 //     const button = $(event.relatedTarget); // Button that triggered the modal
 //     const gameID = button.attr('id'); // Extract info from data-* attributes
