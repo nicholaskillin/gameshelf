@@ -1,19 +1,19 @@
 $(document).ready(function () {
   $('#gameDetailsModal').on('show.bs.modal', function (event) {
-    const button = $(event.relatedTarget); // Button that triggered the modal
-    const gameID = button.attr('id'); // Extract info from data-* attributes
-    const modal = $(this);
+    // const button = $(event.relatedTarget); // Button that triggered the modal
+    // const gameID = button.attr('id'); // Extract info from data-* attributes
+    // const modal = $(this);
 
     // Get game data
-    $.ajaxSetup({
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-    });
+    // $.ajaxSetup({
+    //   headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+    // });
 
-    $.ajax({
-      url: '/games/details',
-      type: 'GET',
-      dataType: 'json',
-      data: { id: gameID },
+    // $.ajax({
+    //   url: '/games/details',
+    //   type: 'GET',
+    //   dataType: 'json',
+    //   data: { id: gameID },
       // success: function (response) {
       //   modal.find('#gameDataTitle').text(response.game.title);
       //   modal.find('#gameDetailsArtwork').attr('src', response.game.image);
@@ -33,6 +33,6 @@ $(document).ready(function () {
       //   }
       //   modal.find('#gameDataPlayTime').append(' min.');
       // },
-    });
+    // });
   });
 });
