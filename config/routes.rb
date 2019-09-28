@@ -16,10 +16,10 @@ Rails.application.routes.draw do
   delete '/games', to: 'games#destroy'
   post '/categories', to: 'categories#create'
   post '/mechanics', to: 'mechanics#create'
-  resources :users do
+  resources :users, param: :username do
     resources :games, only: [:index, :create, :edit, :update, :destroy]
   end
-  resources  :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :account_activations, only: [:edit]
   resources :categories, only: [:create]
   resources :mechanics, only: [:create]
