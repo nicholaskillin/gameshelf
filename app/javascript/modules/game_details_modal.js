@@ -44,15 +44,13 @@ $(document).ready(() => {
 
         // Adds game categories to details modal
         for (let i = 0; i < response.categories.length; i += 1) {
-          modal.find('#game-categories').append(`<li>${response.categories[i].name}</li>`)
+          modal.find('#game-categories').append(`<li>${response.categories[i].name}</li>`);
         }
 
         // Adds game mechanics to details modal
         for (let i = 0; i < response.mechanics.length; i += 1) {
-          modal.find('#game-mechanics').append(`<li>${response.mechanics[i].name}</li>`)
+          modal.find('#game-mechanics').append(`<li>${response.mechanics[i].name}</li>`);
         }
-
-        console.log(response);
       },
     });
   });
