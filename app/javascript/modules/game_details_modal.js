@@ -35,6 +35,13 @@ $(document).ready(() => {
         }
         modal.find('#gameDataPlayTime').append(' min.');
 
+        // Adds year published to details modal
+        if (response.game.year_published) {
+          modal.find('#year-published').html(`<strong>Published:</strong> ${response.game.year_published}`);
+        } else {
+          modal.find('#year-published').html('');
+        }
+
         // Adds game categories to details modal
         for (let i = 0; i < response.categories.length; i += 1) {
           modal.find('#game-categories').append(`<li>${response.categories[i].name}</li>`)
@@ -44,6 +51,8 @@ $(document).ready(() => {
         for (let i = 0; i < response.mechanics.length; i += 1) {
           modal.find('#game-mechanics').append(`<li>${response.mechanics[i].name}</li>`)
         }
+
+        console.log(response);
       },
     });
   });
