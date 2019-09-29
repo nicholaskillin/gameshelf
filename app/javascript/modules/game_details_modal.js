@@ -34,6 +34,16 @@ $(document).ready(() => {
           modal.find('#gameDataPlayTime').append(` - ${response.game.max_play_time}`);
         }
         modal.find('#gameDataPlayTime').append(' min.');
+
+        // Adds game categories to details modal
+        for (let i = 0; i < response.categories.length; i += 1) {
+          modal.find('#game-categories').append(`<li>${response.categories[i].name}</li>`)
+        }
+
+        // Adds game mechanics to details modal
+        for (let i = 0; i < response.mechanics.length; i += 1) {
+          modal.find('#game-mechanics').append(`<li>${response.mechanics[i].name}</li>`)
+        }
       },
     });
   });

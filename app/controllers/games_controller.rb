@@ -30,7 +30,11 @@ class GamesController < ApplicationController
 
   def details
     game = Game.find(params[:id])
-    render json: {game: game}
+    render json: {
+                  game: game,
+                  categories: game.categories,
+                  mechanics: game.mechanics,
+                }
   end
 
   def update
