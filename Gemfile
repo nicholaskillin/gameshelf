@@ -43,6 +43,9 @@ gem 'figaro'
 # Use Webpacker
 gem 'webpacker', '~> 4.x'
 
+# Use React
+gem 'react-rails'
+
 gem 'rails-controller-testing'
 
 # Reduces boot times through caching; required in config/boot.rb
