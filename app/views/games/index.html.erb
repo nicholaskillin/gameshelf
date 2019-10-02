@@ -19,10 +19,7 @@
   </div>
 </div>
 <% if @user.games.any? %>
-  <div id= "games" class="row" >
-    <%= render @games %>
-    <%= react_component("game_card") %>
-  </div>
+  <%= react_component("game_list") %>
 <% end %>
 
 <!-- New Game Modal -->
