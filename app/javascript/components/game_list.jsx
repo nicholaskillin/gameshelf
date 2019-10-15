@@ -1,62 +1,45 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import { RaceOperator } from '../../../../../Library/Caches/typescript/3.6/node_modules/rxjs/internal/observable/race';
 
-const testData = [
-  {
-    game_id: "108",
-    user_id: "nil",
-    title: "Reykholt",
-    min_play_time: "30",
-    min_players: "1",
-    max_players: "4",
-    description: "Growing tomatoes, lettuce, or carrots on Iceland? ...", 
-    image: "https://cf.geekdo-images.com/original/img/9RqZ2VX023EiTB6r7-n4_xS4lnM=/0x0/pic3877054.jpg",
-    rules_url: "nil",
-    playthrough_url: "nil",
-    created_at: "2019-10-01 14:46:09",
-    updated_at: "2019-10-01 14:46:09",
-    max_play_time: "60",
-    min_age: "nil",
-    best_number_of_players: "nil",
-    recommended_min_age: "nil",
-    bgg_number: "nil",
-    year_published: "nil"
-  },
-  {
-    game_id: "52",
-    user_id: "1",
-    title: "Friday",
-    min_play_time: "25",
-    min_players: "1",
-    max_players: "1",
-    description: "Friday, the second game in the Friedemann Friese F...", 
-    image: "https://cf.geekdo-images.com/original/img/gWs9YutHCqaCZgPtfykYN0wkvEs=/0x0/pic1513328.jpg",
-    rules_url: "nil",
-    playthrough_url: "nil",
-    created_at: "2019-07-25 13:20:43",
-    updated_at: "2019-09-29 18:16:29",
-    max_play_time: "25",
-    min_age: "nil",
-    best_number_of_players: "nil",
-    recommended_min_age: "nil",
-    bgg_number: "nil",
-    year_published: "2019"
-  },
-];
+export default class GameList extends React.Component {
+  
+  constructor(props) {
+    super(props)
 
-const GameList = (props) => (
-  <div id="games" className="row">
-    {testData.map(game => <GameCard {...game}/>)}
-  </div>
-);
+    this.state = {
+      loading: true,
+      games: [],
+    }
+  }
 
-export default GameList
+  componentDidMount() {
+    fetch('/api/v1/games')
+      .then(response => response.json())
+      .then(data => this.setState({ games: data, loading: false }));
+  }
+
+  render () {
+
+    const {loading, games} = this.state
+
+
+    if (loading) {
+      return <p>Loading ...</p>;
+    }
+
+    return (
+
+      <div id="games" className="row">
+        {games.games.map(game => <GameCard key={game.id} {...game} />)}
+      </div>
+    )
+  }
+};
 
 class GameCard extends React.Component {
   
   state = {
-    title: "",
+    title: this.props.title,
   }
 
   render() {
@@ -72,7 +55,7 @@ class GameCard extends React.Component {
               <li className="list-group-item">{`Players: ${game.min_players} - ${game.max_players}`}</li>
               <li className="list-group-item">{`Play Time: ${game.min_play_time} - ${game.max_play_time} min`}</li>
             </ul>
-            <p className="card-text">{game.description}</p>
+            <p className="card-text">{game.description.substring(0, 150)}</p>
             <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#gameDetailsModal" id={`${game.game_id}`}>Details</a>
           </div>
         </div>
