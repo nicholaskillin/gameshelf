@@ -56,7 +56,7 @@ class GameCard extends React.Component {
               <li className="list-group-item">{`Play Time: ${game.min_play_time} - ${game.max_play_time} min`}</li>
             </ul>
             <p className="card-text">{game.description.substring(0, 150)}</p>
-            <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#gameDetailsModal" id={`${game.game_id}`}>Details</a>
+            <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#gameDetailsModal" id={`${game.id}`}>Details</a>
           </div>
         </div>
       </div>
