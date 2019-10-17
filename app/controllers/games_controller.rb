@@ -43,7 +43,7 @@ class GamesController < ApplicationController
   def destroy
     @game = current_user.games.find(params[:id])
     current_user.games.delete(@game)
-    redirect_to user_games_url(user_id: current_user.id)
+    redirect_to user_games_url(current_user.username)
   end
 
   private
