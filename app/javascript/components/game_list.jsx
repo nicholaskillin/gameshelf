@@ -1,5 +1,4 @@
 import React from 'react'
-import { RaceOperator } from '../../../../../Library/Caches/typescript/3.6/node_modules/rxjs/internal/observable/race';
 
 export default class GameList extends React.Component {
   
