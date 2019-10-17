@@ -56,7 +56,7 @@ class GameCard extends React.Component {
             </ul>
             <p className="card-text">{game.description.substring(0, 150)}</p>
             <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#gameDetailsModal" id={`${game.id}`}>Details</a>
-            <a data-confirm="Are you sure you want to delete this?" class="btn btn-danger game-delete" rel="nofollow" data-method="delete" href={`/games?id=${game.id}`}><div class="material-icons delete-icon">Delete</div></a>
+            <a data-confirm="Are you sure you want to delete this?" className="btn btn-danger game-delete" rel="nofollow" data-method="delete" href={`/games?id=${game.id}`}><div class="material-icons delete-icon">Delete</div></a>
           </div>
         </div>
       </div>
