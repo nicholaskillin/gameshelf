@@ -22,6 +22,21 @@ class UsersController < ApplicationController
     @games = @user.games
   end
 
+  def edit
+    @user = User.find_by_username(params[:username])
+  end
+
+  def update
+    @user = User.find_by_username(params[:username])
+
+    if @user.update_attributes(user_params)
+      flash[:success] = "User updated"
+      redirect_to user_url(current_user.username)
+    else
+      render "edit"
+    end
+  end
+
   def destroy
   end
 

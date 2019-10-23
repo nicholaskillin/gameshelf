@@ -2,4 +2,5 @@
   <%= image_tag("users/placeholder-avatar.png", :alt => "placeholder profile image", :class => "user-avatar") %>
   <div id="user-name" class="center"><%= @user.name %></div>
 </div>
+<div><%= link_to "Edit", edit_user_url(@user.username) %>
 <div>User show data</div>
