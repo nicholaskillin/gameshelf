@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, :only => [:new, :create]
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -43,6 +44,16 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+    end
+
+    # Confirms current user
+    def correct_user
+      @user = User.find_by_username(params[:username])
+      if current_user?(@user)
+      else
+        flash[:danger] = "Can't edit someone else's profile"
+        redirect_to user_url(current_user.username)
+      end
     end
 
 end
