@@ -2,12 +2,19 @@
 
 <%= form_for @user, :url => user_url(@user.username), :html => {:multipart => true} do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, class: 'form-control' %>
 
-  <%= f.file_field :avatar %>
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar, class: 'form-control' %>
+
+  <%= f.label :password, "New Password" %>
+  <%= f.password_field :password, class: 'form-control' %>
+      
+  <%= f.label :password_confirmation, "Confirm New Password" %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
 
   <%= f.submit %>
 <% end %>
