@@ -3,8 +3,8 @@
 
 // General
 
-.container {
-  padding-top: 40px;
+.container-fluid {
+  padding-top: 2em;
 }
 
 @mixin box_sizing {
@@ -27,7 +27,6 @@
 
 .profile-header {
   height: 8em;
-  margin-top: 2em;
 }
 
 .user-avatar {
