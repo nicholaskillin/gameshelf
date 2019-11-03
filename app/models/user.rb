@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   
-  attr_accessor :activation_token, :reset_token
+  attr_accessor :activation_token, :reset_token, :avatar
   before_save   :downcase_email
   before_create :create_activation_digest
   has_many :game_users, dependent: :destroy
   has_many :games, through: :game_users
-  mount_uploader :avatar, ImageUploader
+  mount_uploader :avatar, AvatarUploader
 
   has_secure_password
 
