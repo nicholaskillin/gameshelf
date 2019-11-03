@@ -2,9 +2,10 @@
   <% if @user.avatar.file.nil? %>
     <%= image_tag("users/placeholder-avatar.png", :alt => "placeholder profile image", :class => "user-avatar") %>
   <% else %>
-    <%= image_tag(@user.avatar_url, :alt => "placeholder profile image", :class => "user-avatar") %>
+    <%= image_tag(@user.avatar_url, :alt => "profile image", :class => "user-avatar") %>
   <% end %>
   <div id="user-name" class="center"><%= @user.name %></div>
 </div>
-<div><%= link_to "Edit", edit_user_url(@user.username) %>
-<div>User show data</div>
+<% if @user == current_user %>
+  <div><%= link_to "Edit", edit_user_url(@user.username) %>
+<% end %>
