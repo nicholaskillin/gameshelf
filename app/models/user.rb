@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   has_many :game_users, dependent: :destroy
   has_many :games, through: :game_users
+  mount_uploader :avatar, ImageUploader
 
   has_secure_password
 

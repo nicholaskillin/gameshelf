@@ -30,6 +30,9 @@ gem 'bcrypt'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# Use Carrierwave for Avatar management
+gem 'carrierwave', '~> 2.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

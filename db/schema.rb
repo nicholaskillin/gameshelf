@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_201650) do
+ActiveRecord::Schema.define(version: 2019_11_03_015901) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "bgg_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_201650) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.string "username"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
