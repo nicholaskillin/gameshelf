@@ -1,17 +1,4 @@
-<div class="row profile-header">
-  <% if @user.avatar.file.nil? %>
-    <%= image_tag("users/placeholder-avatar.png", :alt => "placeholder profile image", :class => "user-avatar") %>
-  <% else %>
-    <%= image_tag(@user.avatar_url, :alt => "profile image", :class => "user-avatar") %>
-  <% end %>
-  <div id="user-name" class="center"><%= @user.name %></div>
-  <!--Button to trigger new game modal-->
-  <div class="col">
-    <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGame">
-      New Game
-    </button>
-  </div>
-</div>
+<%= render 'shared/profile_header' %>
 
 <div class="row">
   <div class="col">

@@ -4,8 +4,18 @@
   <% else %>
     <%= image_tag(@user.avatar_url, :alt => "profile image", :class => "user-avatar") %>
   <% end %>
-  <div id="user-name" class="center"><%= @user.name %></div>
+  <div id="user-name" class="center">
+    <%= @user.name %>
+    <% if @user == current_user && params[:action] == 'show' %>
+      <%= link_to "Edit", edit_user_url(@user.username), class: 'btn btn-outline-secondary btn-sm', id: 'user-edit-button' %>
+    <% end %>
+  </div>
+  <% if params[:controller] == 'games' && params[:action] == 'index' %>
+    <!--Button to trigger new game modal-->
+    <div class="col">
+      <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGame">
+        New Game
+      </button>
+    </div>
+  <% end %>
 </div>
-<% if @user == current_user %>
-  <div><%= link_to "Edit", edit_user_url(@user.username) %>
-<% end %>
