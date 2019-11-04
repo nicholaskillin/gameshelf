@@ -12,7 +12,14 @@ export default class GameList extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/games')
+    var url = new URL('http://game-shelf.nicholaskillin.com/api/v1/games');
+    if (process.env.NODE_ENV == 'development') {
+      url = new URL('http://localhost:3000/api/v1/games');
+    }
+    var usernameFromURL = location.pathname.replace('/users/', '').replace('/games', '');
+    var params = {username:usernameFromURL};
+    url.search = new URLSearchParams(params).toString();
+    fetch(url)
       .then(response => response.json())
       .then(data => this.setState({ games: data, loading: false }));
   }
@@ -56,7 +63,7 @@ class GameCard extends React.Component {
             </ul>
             <p className="card-text">{game.description.substring(0, 150)}</p>
             <a href="#" className="btn btn-primary" data-toggle="modal" data-target="#gameDetailsModal" id={`${game.id}`}>Details</a>
-            <a data-confirm="Are you sure you want to delete this?" className="btn btn-danger game-delete" rel="nofollow" data-method="delete" href={`/games?id=${game.id}`}><div class="material-icons delete-icon">Delete</div></a>
+            <a data-confirm="Are you sure you want to delete this?" className="btn btn-danger game-delete" rel="nofollow" data-method="delete" href={`/games?id=${game.id}`}><div className="material-icons delete-icon">Delete</div></a>
           </div>
         </div>
       </div>
