@@ -17,7 +17,7 @@ export default class GameList extends React.Component {
       url = new URL('http://localhost:3000/api/v1/games');
     }
     var usernameFromURL = location.pathname.replace('/users/', '').replace('/games', '');
-    var params = {username:usernameFromURL};
+    var params = {username:usernameFromURL, sort:'title'};
     url.search = new URLSearchParams(params).toString();
     fetch(url)
       .then(response => response.json())
@@ -28,6 +28,19 @@ export default class GameList extends React.Component {
 
     const {loading, games} = this.state
 
+    const getData = () => {
+      let sortValue = $('#gameSort').val();
+      var url = new URL('http://game-shelf.nicholaskillin.com/api/v1/games');
+      if (process.env.NODE_ENV == 'development') {
+        url = new URL('http://localhost:3000/api/v1/games');
+      }
+      var usernameFromURL = location.pathname.replace('/users/', '').replace('/games', '');
+      var params = {username:usernameFromURL, sort:sortValue};
+      url.search = new URLSearchParams(params).toString();
+      fetch(url)
+        .then(response => response.json())
+        .then(data => this.setState({ games: data }));
+    }
 
     if (loading) {
       return <p>Loading ...</p>;
@@ -35,8 +48,19 @@ export default class GameList extends React.Component {
 
     return (
 
-      <div id="games" className="row">
-        {games.games.map(game => <GameCard key={game.id} {...game} />)}
+      <div id="games">
+        <div className="row">
+          <div className="col">
+            {games.games.length} Games
+          </div>
+          <select onChange={getData} id={'gameSort'}>
+            <option value={'title'}>Title A-Z</option>
+            <option value={'min_play_time'}>Min Play Time</option>
+          </select>
+        </div>
+        <div className="row">
+          {games.games.map(game => <GameCard key={game.id} {...game} />)}
+        </div>
       </div>
     )
   }
@@ -45,7 +69,7 @@ export default class GameList extends React.Component {
 class GameCard extends React.Component {
   
   state = {
-    title: this.props.title,
+    loaded: true,
   }
 
   render() {

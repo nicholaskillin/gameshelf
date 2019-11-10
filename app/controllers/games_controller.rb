@@ -25,7 +25,6 @@ class GamesController < ApplicationController
 
   def index
     @user = User.find_by_username(params[:user_username])
-    @games = @user.games
   end
 
   def details
