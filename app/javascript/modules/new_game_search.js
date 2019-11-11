@@ -189,6 +189,9 @@ $(document).ready(() => {
           max_players: xmlDoc.getElementsByTagName('maxplayers')[0].getAttribute('value'),
           description: xmlDoc.getElementsByTagName('description')[0].innerHTML,
           image: xmlDoc.getElementsByTagName('image')[0].innerHTML,
+          min_age: xmlDoc.getElementsByTagName('minage')[0].getAttribute('value'),
+          bgg_number: xmlDoc.getElementsByTagName('item')[0].getAttribute('id'),
+          year_published: xmlDoc.getElementsByTagName('yearpublished')[0].getAttribute('value'),
           categories: categoryBggIds,
           mechanics: mechanicBggIds,
         };
