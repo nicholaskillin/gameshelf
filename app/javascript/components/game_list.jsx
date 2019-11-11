@@ -49,14 +49,16 @@ export default class GameList extends React.Component {
     return (
 
       <div id="games">
-        <div className="row">
+        <div className="row" id={'filter-bar'}>
           <div className="col">
             {games.games.length} Games
           </div>
-          <select onChange={getData} id={'gameSort'}>
-            <option value={'title'}>Title A-Z</option>
-            <option value={'min_play_time'}>Min Play Time</option>
-          </select>
+          <div className="col-sm-2">
+            <select onChange={getData} id={'gameSort'} className={'form-control'}>
+              <option value={'title'}>Title</option>
+              <option value={'min_play_time'}>Play Time</option>
+            </select>
+          </div>
         </div>
         <div className="row">
           {games.games.map(game => <GameCard key={game.id} {...game} />)}

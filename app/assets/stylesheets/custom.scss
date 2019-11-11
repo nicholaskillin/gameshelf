@@ -54,6 +54,12 @@
   width: 18rem;
 }
 
+#filter-bar {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1em;
+}
+
 /* Modals */
 .modal-container {
   padding-left: 10px;
