@@ -17,29 +17,39 @@ export default class GameList extends React.Component {
       url = new URL('http://localhost:3000/api/v1/games');
     }
     var usernameFromURL = location.pathname.replace('/users/', '').replace('/games', '');
-    var params = {username:usernameFromURL, sort:'title'};
+    var params = {username:usernameFromURL};
     url.search = new URLSearchParams(params).toString();
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ games: data, loading: false }));
+      .then(data => this.setState({ games: data.games, loading: false }));
   }
 
   render () {
 
     const {loading, games} = this.state
 
-    const getData = () => {
-      let sortValue = $('#gameSort').val();
-      var url = new URL('http://game-shelf.nicholaskillin.com/api/v1/games');
-      if (process.env.NODE_ENV == 'development') {
-        url = new URL('http://localhost:3000/api/v1/games');
+    const handleSort = () => {
+      const sortCriteria = $('#gameSort').val();
+      function propComparator(prop) {
+        if (prop == 'title') {
+          return function(a, b) {
+            if (a[prop] > b[prop]) {
+              return 1;
+            }
+            if (b[prop] > a[prop]) {
+                return -1;
+            }
+            return 0;
+            }
+        } else {
+          return function(a, b) {
+              return a[prop] - b[prop];
+          }
+        }
       }
-      var usernameFromURL = location.pathname.replace('/users/', '').replace('/games', '');
-      var params = {username:usernameFromURL, sort:sortValue};
-      url.search = new URLSearchParams(params).toString();
-      fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({ games: data }));
+      const gameData = [].concat(this.state.games)
+        .sort(propComparator(sortCriteria));
+      this.setState({ games: gameData })
     }
 
     if (loading) {
@@ -51,17 +61,17 @@ export default class GameList extends React.Component {
       <div id="games">
         <div className="row" id={'filter-bar'}>
           <div className="col">
-            {games.games.length} Games
+            {games.length} Games
           </div>
           <div className="col-sm-2">
-            <select onChange={getData} id={'gameSort'} className={'form-control'}>
+            <select onChange={handleSort} id={'gameSort'} className={'form-control'}>
               <option value={'title'}>Title</option>
               <option value={'min_play_time'}>Play Time</option>
             </select>
           </div>
         </div>
         <div className="row">
-          {games.games.map(game => <GameCard key={game.id} {...game} />)}
+          {games.map(game => <GameCard key={game.id} {...game} />)}
         </div>
       </div>
     )
