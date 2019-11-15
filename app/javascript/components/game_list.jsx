@@ -50,6 +50,7 @@ export default class GameList extends React.Component {
       const gameData = [].concat(this.state.games)
         .sort(propComparator(sortCriteria));
       this.setState({ games: gameData })
+      console.log(this.state);
     }
 
     if (loading) {

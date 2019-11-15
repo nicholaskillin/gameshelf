@@ -17,9 +17,12 @@ class GamesController < ApplicationController
             
     end
 
-    current_user.games << @game
-
-    render json: {game_id: @game.id}
+    if @game == current_user.games.where(id: @game.id)[0]
+      flash[:warning] = "You already have this game in your library."
+    else
+      current_user.games << @game
+      render json: {game_id: @game.id}
+    end
 
   end
 
