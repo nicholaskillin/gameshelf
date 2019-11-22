@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com", password: "123456")
+    @user = User.new(name: "Example User", email: "user@example.com", username: "exampleuser", password: "123456")
   end
   
   test "email addresses should be unique" do
@@ -14,7 +14,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should always downcase" do
-    user = User.new(name: "Example User", email: "ALLCAPS@example.com", password: "123456")
+    user = User.new(name: "Example User", email: "ALLCAPS@example.com", username: "exampleuser", password: "123456")
     user.save
     assert_equal user.email, "allcaps@example.com"
   end
