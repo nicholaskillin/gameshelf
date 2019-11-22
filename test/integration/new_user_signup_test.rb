@@ -23,6 +23,7 @@ class NewUserSignupTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', 1 do
       post users_path, params: { user: { name: "Example User",
                                           email: "user@example.com",
+                                          username: "exampleuser",
                                           password: "password",
                                           password_confirmation: "password" }}
                                           
@@ -43,7 +44,7 @@ class NewUserSignupTest < ActionDispatch::IntegrationTest
     get edit_account_activation_path(user.activation_token, email: user.email)
     assert user.reload.activated?
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'games/index'
     assert is_logged_in?
   end
 end
