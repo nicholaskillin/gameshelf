@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: 1
   title: MyString
   min_play_time: 30
   max_play_time: 120
@@ -18,7 +17,6 @@ one:
   year_published: 1986
 
 two:
-  user: 2
   title: MyStringTwo
   min_play_time: 3
   max_play_time: 10
