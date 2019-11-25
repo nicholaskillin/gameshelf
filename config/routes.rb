@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post '/mechanics', to: 'mechanics#create'
   resources :users, param: :username do
     resources :games, only: [:index, :create, :edit, :update, :destroy]
+    resources :friendships, only: [:index]
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :account_activations, only: [:edit]
