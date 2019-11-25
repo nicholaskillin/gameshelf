@@ -19,4 +19,22 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user.email, "allcaps@example.com"
   end
 
+  test "email required" do
+    user = User.new(name: "Example User", email: "", username: "exampleuser", password: "password")
+    user.save
+    assert_not user.valid?
+  end
+
+  test "username required" do
+    user = User.new(name: "Example User", email: "example@user.com", username: "", password: "password")
+    user.save
+    assert_not user.valid?
+  end
+
+  test "name required" do
+    user = User.new(name: "", email: "example@user.com", username: "example user", password: "password")
+    user.save
+    assert_not user.valid?
+  end
+
 end
