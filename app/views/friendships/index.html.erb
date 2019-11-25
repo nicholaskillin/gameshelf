@@ -1,1 +1,13 @@
-Friends Index
+<% if @user.friends.any? %>
+  
+  <% if @user.pending_friends.any? %>
+    <h4>Your pending friend requests:</h4>
+    <%= render @pending_friendships %>
+  <% end %>
+
+  <% if @user.active_friends.any? %>
+    <h4>Your active friends</h4>
+    <%= render @active_friendships %>
+  <% end %>
+
+<% end %>
