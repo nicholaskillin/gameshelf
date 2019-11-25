@@ -3,17 +3,32 @@ class User < ApplicationRecord
   attr_accessor :activation_token, :reset_token, :avatar
   before_save   :downcase_email
   before_create :create_activation_digest
-  has_many :game_users, dependent: :destroy
-  has_many :games, through: :game_users
   mount_uploader :avatar, AvatarUploader
-
   has_secure_password
 
+  # - Relations
+  has_many :game_users, dependent: :destroy
+  has_many :games, through: :game_users
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+  has_many :received_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :received_friends, through: :received_friendships, source: 'user'
+
+  # - Validations
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255}, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :username, presence: true, length: {maximum: 25}, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+
+  # Finding Friends
+  def active_friends
+    friends.select{ |friend| friend.friends.include?(self) }  
+  end
+  
+  def pending_friends
+    friends.select{ |friend| !friend.friends.include?(self) }  
+  end
 
   # Returns the has digest of the given string
   def User.digest(string)
