@@ -1,1 +1,3 @@
-<%= user.name %>
+<li class="list-group-item friend">
+  <%= link_to user.name, user_games_url(user.username) %>
+</li>
