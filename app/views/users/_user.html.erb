@@ -1,3 +1,7 @@
 <li class="list-group-item friend">
-  <%= link_to user.name, user_games_url(user.username) %>
+  <% if @user.active_friends.include? user %>
+    <%= link_to user.name, user_games_url(user.username) %>
+  <% else %>
+    <%= user.name %> <button>Accept</button>
+  <% end %>
 </li>
