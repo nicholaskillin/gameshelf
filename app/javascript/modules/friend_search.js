@@ -14,8 +14,15 @@ $(document).ready(() => {
       .then(data => {
         updateResults(data.users);
       });
+
     const updateResults = (data) => {
       console.log(data);
+      let results = '';
+      for (let i = 0; i < data.length; i += 1) {
+        results += `<div userID=${data[i].id}>${data[i].name}</div>`;
+        console.log(data[i].name);
+      }
+      document.getElementById('searchResults').innerHTML = results;
     }
   });
 });
