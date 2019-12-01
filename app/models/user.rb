@@ -30,6 +30,10 @@ class User < ApplicationRecord
     friends.select{ |friend| !friend.friends.include?(self) }  
   end
 
+  def pending_friend_requests
+    User.select{ |user| user.friends.include?(self) && !self.friends.include?(user) }
+  end
+
   # Returns the has digest of the given string
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
