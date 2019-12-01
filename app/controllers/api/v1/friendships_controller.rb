@@ -3,8 +3,6 @@ class Api::V1::FriendshipsController < ApplicationController
 
   def create
     user = User.find(params[:userid])
-    logger.debug current_user.name
-    logger.debug user.name
     current_user.friends << user
   end
 
