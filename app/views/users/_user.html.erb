@@ -2,6 +2,7 @@
   <% if @user.active_friends.include? user %>
     <%= link_to user.name, user_games_url(user.username) %>
   <% else %>
-    <%= user.name %> <button>Accept</button>
+    <%= user.name %>
+    <%= link_to 'Accept', api_v1_add_friend_path(user_id: user.id), method: :post, class: 'btn' %>
   <% end %>
 </li>

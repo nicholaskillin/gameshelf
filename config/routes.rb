@@ -30,6 +30,7 @@ Rails.application.routes.draw do
      resources :games, only: [:index]
      resources :users, only: [:index]
      resources :friendships, only: [:create]
+     post '/add-friend/:user_id', to: 'friendships#create', as: "add_friend"
     end 
   end 
 

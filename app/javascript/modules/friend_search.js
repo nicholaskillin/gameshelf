@@ -32,7 +32,7 @@ $(document).ready(() => {
         if (process.env.NODE_ENV == 'development') {
           url = new URL('http://localhost:3000/api/v1/friendships');
         }
-        let params = { userid: selectedUser };
+        let params = { user_id: selectedUser };
         url.search = new URLSearchParams(params).toString();
         fetch(url, { method: 'POST' });
       });
