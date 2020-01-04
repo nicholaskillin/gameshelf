@@ -1,6 +1,6 @@
 <%= render 'shared/profile_header' %>
 
-<% if !current_user.friends.include?(@user) || !@user.friends.include?(current_user) %>
+<% if (!current_user.friends.include?(@user) || !@user.friends.include?(current_user)) && current_user != @user %>
   You need to be friends with someone in order to see their games.
   <%= link_to 'Send Friend Request', api_v1_friendships_url(user_id: @user.id), method: :post, class: 'btn btn-primary btn-sm' %>
 <% else %>
