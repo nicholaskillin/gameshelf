@@ -29,8 +29,7 @@ Rails.application.routes.draw do
     namespace :v1 do 
      resources :games, only: [:index]
      resources :users, only: [:index]
-     resources :friendships, only: [:create]
-     post '/add-friend/:user_id', to: 'friendships#create', as: "add_friend"
+     resources :friendships, only: [:create, :destroy]
     end 
   end 
 
