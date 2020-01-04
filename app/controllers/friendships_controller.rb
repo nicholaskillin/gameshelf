@@ -10,7 +10,7 @@ class FriendshipsController < ApplicationController
   private
     # Confirms current user
     def correct_user
-      @user = User.find_by_username(params[:username])
+      @user = User.find_by_username(params[:user_username])
       if current_user?(@user)
       else
         flash[:danger] = "Can't see someone else's friends."
