@@ -1,0 +1,9 @@
+<li class="list-group-item friend">
+  <% if @user.active_friends.include? user %>
+    <%= link_to user.name, user_games_url(user.username) %>
+    <%= link_to 'Remove Friend', api_v1_friendship_url(current_user, user_id: user.id), method: :delete, class: 'btn btn-danger btn-sm friendship-button' %>
+  <% else %>
+    <%= user.name %>
+    <%= link_to 'Accept', api_v1_friendships_url(user_id: user.id), method: :post, class: 'btn btn-primary btn-sm friendship-button' %>
+  <% end %>
+</li>

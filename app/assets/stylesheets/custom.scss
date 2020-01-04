@@ -67,11 +67,29 @@
 
 /* New Game Modal */
 
-tr:hover{
+tr:hover {
   background-color:lightgray;
   cursor:pointer;
 }
 
 tr:nth-child(1):hover {
   background-color: white;
+}
+
+/* Friendships */
+.friend {
+  margin-top: 1em;
+}
+
+.friendship-button {
+  float: right;
+}
+
+/* Friendship Search Form */
+#userSearch {
+  margin-top: .5em;
+}
+
+.user-search-result {
+  margin-bottom: .3em;
 }
