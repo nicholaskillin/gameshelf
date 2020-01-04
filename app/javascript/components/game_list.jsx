@@ -12,7 +12,7 @@ export default class GameList extends React.Component {
   }
 
   componentDidMount() {
-    var url = new URL('http://game-shelf.nicholaskillin.com/api/v1/games');
+    var url = new URL('http://gamenights.nicholaskillin.com/api/v1/games');
     if (process.env.NODE_ENV == 'development') {
       url = new URL('http://localhost:3000/api/v1/games');
     }
