@@ -1,7 +1,12 @@
 <%= render 'shared/profile_header' %>
 
-<% if @user.games.any? %>
-  <%= react_component("game_list") %>
+<% if !current_user.friends.include?(@user) || !@user.friends.include?(current_user) %>
+  You need to be friends with someone in order to see their games.
+  <%= link_to 'Send Friend Request', api_v1_friendships_url(user_id: @user.id), method: :post, class: 'btn btn-primary btn-sm' %>
+<% else %>
+  <% if @user.games.any? %>
+    <%= react_component("game_list") %>
+  <% end %>
 <% end %>
 
 <!-- New Game Modal -->
