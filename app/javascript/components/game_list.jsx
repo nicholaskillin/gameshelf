@@ -8,6 +8,7 @@ export default class GameList extends React.Component {
     this.state = {
       loading: true,
       games: [],
+      availability: [],
     }
   }
 
@@ -21,7 +22,7 @@ export default class GameList extends React.Component {
     url.search = new URLSearchParams(params).toString();
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ games: data.games, loading: false }));
+      .then(data => this.setState({ games: data.games, availability:data.availability, loading: false }));
   }
 
   render () {
@@ -92,7 +93,7 @@ class GameCard extends React.Component {
         <div className="card game-entry">
           <img className="card-img-top" src={game.image} alt={`${game.title} Artwork`}></img>
           <div className="card-body">
-            <h5 className="card-title">{game.title}</h5>
+            <h5 className="card-title">{game.title} {game.id}</h5>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">{`Players: ${game.min_players} - ${game.max_players}`}</li>
               <li className="list-group-item">{`Play Time: ${game.min_play_time} - ${game.max_play_time} min`}</li>
