@@ -8,7 +8,7 @@ export default class GameList extends React.Component {
     this.state = {
       loading: true,
       games: [],
-      }
+    }
   }
 
   componentDidMount() {
