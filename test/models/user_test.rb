@@ -32,8 +32,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "name required" do
-    user = User.new(name: "", email: "example@user.com", username: "example user", password: "password")
+    user = User.new(name: "", email: "example@user.com", username: "exampleuser", password: "password")
     user.save
+    assert_not user.valid?
+  end
+
+  test "no spaces in username" do
+    user = User.new(name: "Example User", email:"example@user.com", username: "example user", password: "password")
+    user.save
+
     assert_not user.valid?
   end
 
