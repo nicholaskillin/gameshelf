@@ -1,5 +1,5 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "bootstrap";
+@import 'bootstrap';
 
 // General
 
@@ -8,9 +8,9 @@
 }
 
 @mixin box_sizing {
-  -moz-box-sizing:    border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  box-sizing: border-box;
 }
 
 /* miscellaneous */
@@ -33,9 +33,10 @@
   width: 8em;
   height: 100%;
   margin-left: 2.5em;
+  object-fit: cover;
 }
 
-#user-name{
+#user-name {
   margin-left: 1em;
   font-size: 2em;
   line-height: 4em;
@@ -46,7 +47,7 @@
 }
 
 #user-edit-button {
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
 }
 
 /* Game Index */
@@ -68,8 +69,8 @@
 /* New Game Modal */
 
 tr:hover {
-  background-color:lightgray;
-  cursor:pointer;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 tr:nth-child(1):hover {
@@ -87,9 +88,9 @@ tr:nth-child(1):hover {
 
 /* Friendship Search Form */
 #userSearch {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .user-search-result {
-  margin-bottom: .3em;
+  margin-bottom: 0.3em;
 }
