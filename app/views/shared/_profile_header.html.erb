@@ -10,12 +10,14 @@
       <%= link_to "Edit", edit_user_url(@user.username), class: 'btn btn-outline-secondary btn-sm', id: 'user-edit-button' %>
     <% end %>
   </div>
-  <% if params[:controller] == 'games' && params[:action] == 'index' && (params[:user_username] == current_user.username) %>
-    <!--Button to trigger new game modal-->
-    <div class="col">
-      <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGame">
-        New Game
-      </button>
-    </div>
+  <% if logged_in? %>
+    <% if params[:controller] == 'games' && params[:action] == 'index' && (params[:user_username] == current_user.username) %>
+      <!--Button to trigger new game modal-->
+      <div class="col">
+        <button id="new-game-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGame">
+          New Game
+        </button>
+      </div>
+    <% end %>
   <% end %>
 </div>
