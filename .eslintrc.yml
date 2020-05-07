@@ -14,7 +14,4 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {
-  no-unused-vars: 0,
-  no-use-before-define: 0,
-}
+rules: { no-unused-vars: 0, no-use-before-define: 0, semi: [2, 'never'] }

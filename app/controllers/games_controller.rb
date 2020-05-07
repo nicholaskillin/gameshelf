@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+
   def create
     
     @categories = game_params[:categories]
