@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
      resources :games, only: [:index]
-     resources :users, only: [:index]
+     resources :users, only: [:index, :destroy]
      resources :friendships, only: [:create, :destroy]
     end 
   end 
