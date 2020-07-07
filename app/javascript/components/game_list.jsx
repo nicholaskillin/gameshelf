@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 
-export default function GameList({ games: initialGameData }) {
+export default function GameList({
+  currentUser,
+  games: initialGameData,
+  user,
+}) {
   const [games, setGames] = useState(initialGameData)
-
   const handleSort = () => {
     const sortCriteria = $('#gameSort').val()
     function propComparator(prop) {
@@ -43,14 +46,19 @@ export default function GameList({ games: initialGameData }) {
       </div>
       <div className="row">
         {games.map((game) => (
-          <GameCard key={game.id} {...game} />
+          <GameCard
+            currentUser={currentUser}
+            key={game.id}
+            game={game}
+            user={user}
+          />
         ))}
       </div>
     </div>
   )
 }
 
-function GameCard(game) {
+function GameCard({ currentUser, game, user }) {
   return (
     <div className="col-sm-3">
       <div className="card game-entry">
@@ -75,15 +83,17 @@ function GameCard(game) {
           >
             Details
           </a>
-          <a
-            data-confirm="Are you sure you want to delete this?"
-            className="btn btn-danger game-delete"
-            rel="nofollow"
-            data-method="delete"
-            href={`/games?id=${game.id}`}
-          >
-            <div className="material-icons delete-icon">Delete</div>
-          </a>
+          {currentUser.id === user.id && (
+            <a
+              data-confirm="Are you sure you want to delete this?"
+              className="btn btn-danger game-delete"
+              rel="nofollow"
+              data-method="delete"
+              href={`/games?id=${game.id}`}
+            >
+              <div className="material-icons delete-icon">Delete</div>
+            </a>
+          )}
         </div>
       </div>
     </div>

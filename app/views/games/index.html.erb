@@ -1,7 +1,7 @@
 <%= render 'shared/profile_header' %>
 
 <% if @user.games.any? %>
-  <%= react_component("game_list", {games: @user.games}) %>
+  <%= react_component("game_list", { currentUser: current_user, games: @user.games, user: @user}) %>
 <% end %>
 
 <!-- New Game Modal -->
