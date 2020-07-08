@@ -59,6 +59,9 @@ export default function GameList({
 }
 
 function GameCard({ currentUser, game, user }) {
+  function canDelete() {
+    return currentUser !== null && currentUser.id === user.id
+  }
   return (
     <div className="col-sm-3">
       <div className="card game-entry">
@@ -83,7 +86,7 @@ function GameCard({ currentUser, game, user }) {
           >
             Details
           </a>
-          {currentUser.id === user.id && (
+          {canDelete() && (
             <a
               data-confirm="Are you sure you want to delete this?"
               className="btn btn-danger game-delete"
