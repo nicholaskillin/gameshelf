@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   # Finding Friends
   def active_friends
+    foo.bar
     friends.select{ |friend| friend.friends.include?(self) }  
   end
   
