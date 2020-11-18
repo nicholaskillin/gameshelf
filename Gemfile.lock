@@ -103,6 +103,7 @@ GEM
     concurrent-ruby (1.1.6)
     connection_pool (2.2.3)
     crass (1.0.6)
+    dotenv (2.7.6)
     erubi (1.9.0)
     excon (0.75.0)
     execjs (2.7.0)
@@ -298,6 +299,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave (~> 2.0)
   coffee-rails (~> 4.2)
+  dotenv
   figaro
   fog-aws
   jbuilder (~> 2.5)
