@@ -34,7 +34,6 @@
 
 # Ignore application configuration
 /config/application.yml
-
 .env
 
 /public/packs
@@ -43,3 +42,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.DS_Store
