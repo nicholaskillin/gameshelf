@@ -7,21 +7,21 @@ gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem "bugsnag", "~> 6.13"
-gem 'carrierwave', '~> 2.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'carrierwave'
+gem 'coffee-rails'
 gem 'figaro'
 gem 'fog-aws'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mysql2'
-gem 'puma', '~> 3.12'
-gem 'rails', '6.0.3.2'
+gem 'puma'
+gem 'rails'
 gem 'rails-controller-testing'
 gem 'react-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '~> 5.x'
+gem 'uglifier'
+gem 'webpacker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
