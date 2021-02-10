@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_username(params[:username])
 
-    binding.pry
     if @user.update(user_params)
       flash[:success] = "User updated"
       redirect_to user_url(current_user.username)
