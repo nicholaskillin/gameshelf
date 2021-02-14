@@ -23,11 +23,11 @@ class User < ApplicationRecord
 
   # Finding Friends
   def active_friends
-    friends.select{ |friend| friend.friends.include?(self) }  
+    friends.select{ |friend| friend.friends.include?(self) }
   end
   
   def pending_friends
-    friends.select{ |friend| !friend.friends.include?(self) }  
+    friends.select{ |friend| !friend.friends.include?(self) }
   end
 
   def pending_friend_requests
