@@ -5,15 +5,10 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
+      - image: circleci/ruby:2.7.0-stretch-node
     executor: ruby/default
     steps:
       - checkout
-      - run:
-           name: Set ruby version to 2.7.0
-           command: |
-                rvm install 2.7.0
-                echo . $(rvm 2.7.0 do rvm env --path) >> $BASH_ENV
       - run:
           name: install dependencies
           command: |
