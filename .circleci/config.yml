@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/2.7.0-rc1-buster
+      - image: circleci/ruby:2.7-rc-stretch
     executor: ruby/default
     steps:
       - checkout
