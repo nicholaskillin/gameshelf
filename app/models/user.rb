@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  
+
   attr_accessor :activation_token, :reset_token, :avatar
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -21,11 +21,10 @@ class User < ApplicationRecord
   validates :username, presence: true, length: {maximum: 25}, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
-  # Finding Friends
   def active_friends
     friends.select{ |friend| friend.friends.include?(self) }
   end
-  
+
   def pending_friends
     friends.select{ |friend| !friend.friends.include?(self) }
   end
@@ -34,13 +33,13 @@ class User < ApplicationRecord
     User.select{ |user| user.friends.include?(self) && !self.friends.include?(user) }
   end
 
-  # Returns the has digest of the given string
+  # Returns the hash digest of the given string
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost:cost)
   end
-  
+
   # Returns a random token
   def User.new_token
     SecureRandom.urlsafe_base64
@@ -78,8 +77,8 @@ class User < ApplicationRecord
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
-  
-  private 
+
+  private
 
     # Converts email to all lower case
     def downcase_email
