@@ -1,6 +1,8 @@
 class MechanicsController < ApplicationController
   
   def create
+    return unless mechanic_params[:mechanics]
+
     mechanic_params[:mechanics].each do |param|
       Mechanic.find_or_create_by(param[1])
     end
