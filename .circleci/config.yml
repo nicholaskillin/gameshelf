@@ -14,7 +14,19 @@ jobs:
           command: |
             gem install bundler -v 2.1.4
             bundle install
-      - run:
-          name: Which bundler?
-          command: bundle -v
       - ruby/bundle-install
+  rspec:
+    executor: ruby/default
+    steps:
+      - checkout
+      - rails/bundle:
+          cache-version: "2"
+          restore-only: true
+      - rails/yarn:
+          restore-only: true
+      - rails/setup-database:
+          schema-type: ruby
+      - rails/test:
+          test-runner: rspec
+          coverage: true
+          parallel: true
