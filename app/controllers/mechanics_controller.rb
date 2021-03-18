@@ -6,12 +6,12 @@ class MechanicsController < ApplicationController
       Mechanic.find_or_create_by(param[1])
     end
 
-    render json: {mechanic_params[:mechanics] => []}
+    render json: { mechanic_params[:mechanics] => [] }
   end
 
   private
 
   def mechanic_params
-    params.permit(mechanics: [:name, :bgg_id])
+    params.permit(mechanics: %i[name bgg_id])
   end
 end
