@@ -1,5 +1,4 @@
 class MechanicsController < ApplicationController
-  
   def create
     return unless mechanic_params[:mechanics]
 
@@ -12,8 +11,7 @@ class MechanicsController < ApplicationController
 
   private
 
-    def mechanic_params
-      params.permit(mechanics: [:name, :bgg_id])
-    end
-
+  def mechanic_params
+    params.permit(mechanics: [:name, :bgg_id])
+  end
 end
