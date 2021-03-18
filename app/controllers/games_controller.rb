@@ -30,6 +30,7 @@ class GamesController < ApplicationController
 
   def index
     @user = User.find_by_username(params[:user_username])
+    not_found unless @user
   end
 
   def details
@@ -53,5 +54,9 @@ class GamesController < ApplicationController
 
   def game_params
     params.permit(:title, :description, :image, :min_play_time, :max_play_time, :min_players, :max_players, :min_age, :bgg_number, :year_published, categories: [], mechanics: [])
+  end
+
+  def not_found
+    raise ActiveRecord::RecordNotFound
   end
 end
