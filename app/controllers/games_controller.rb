@@ -6,17 +6,17 @@ class GamesController < ApplicationController
     @categories = game_params[:categories]
     @mechanics = game_params[:mechanics]
     @game = Game.find_or_create_by(game_params.except(:categories, :mechanics)) do |game|
-      
+
       @categories.each do |category|
         category_to_add = Category.find_by(bgg_id: category)
         game.categories << category_to_add
       end
-      
+
       @mechanics.each do |mechanic|
         mechanic_to_add = Mechanic.find_by(bgg_id: mechanic)
         game.mechanics << mechanic_to_add
       end
-            
+
     end
 
     if @game == current_user.games.where(id: @game.id)[0]
@@ -41,8 +41,7 @@ class GamesController < ApplicationController
                 }
   end
 
-  def update
-  end
+  def update; end
 
   def destroy
     @game = current_user.games.find(params[:id])
@@ -52,7 +51,7 @@ class GamesController < ApplicationController
 
   private
 
-    def game_params
-      params.permit(:title, :description, :image, :min_play_time, :max_play_time, :min_players, :max_players, :min_age, :bgg_number, :year_published, categories: [], mechanics: [])
-    end
+  def game_params
+    params.permit(:title, :description, :image, :min_play_time, :max_play_time, :min_players, :max_players, :min_age, :bgg_number, :year_published, categories: [], mechanics: [])
+  end
 end
