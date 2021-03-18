@@ -29,6 +29,8 @@ group :development, :test do
   gem 'dotenv'
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'pry'
+  gem 'pry-remote'
   gem 'rspec-rails', '~> 4.0.1'
 end
 
@@ -36,7 +38,6 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'pry'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
