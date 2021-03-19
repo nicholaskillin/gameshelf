@@ -29,9 +29,9 @@ jobs:
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: circleci-demo-ruby
-      PGPASSWORD: ""
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_USER: user
+      MYSQL_PASSWORD: passw0rd
       RAILS_ENV: test
     steps:
       - checkout
