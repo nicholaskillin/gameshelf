@@ -14,7 +14,6 @@ jobs:
           command: |
             gem install bundler -v 2.1.4
             bundle install
-      - ruby/bundle-install
   rspec:
     parallelism: 2
     executor: ruby/default
