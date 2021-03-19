@@ -21,10 +21,7 @@ jobs:
     steps:
       - checkout
       - rails/bundle:
-          cache-version: "2"
-          restore-only: true
       - rails/yarn:
-          restore-only: true
       - rails/setup-database:
           schema-type: ruby
       - rails/test:
