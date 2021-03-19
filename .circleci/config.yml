@@ -14,7 +14,9 @@ jobs:
       # Store bundle cache
       - run:
           name: Yarn Install
-          command: yarn install
+          command: |
+            npm install --global yarn
+            which yarn
   test:
     parallelism: 3
     docker:
