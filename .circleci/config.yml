@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@1.1.0
-  node: circleci/node@2
+  node: circleci/node@4.2.0
 
 jobs:
   build:
@@ -10,6 +10,8 @@ jobs:
       - image: circleci/ruby:2.7.2
     steps:
       - checkout
+      - node/install:
+          - install-yarn: true
       - ruby/install-deps
       # Store bundle cache
       - run:
