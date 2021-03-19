@@ -14,11 +14,8 @@ jobs:
           install-yarn: true
       - ruby/install-deps
       # Store bundle cache
-      - run:
-          name: Yarn Install
-          command: |
-            npm install --global yarn
-            which yarn
+      - node/install-packages:
+          pkg-manager: yarn
   test:
     parallelism: 3
     docker:
