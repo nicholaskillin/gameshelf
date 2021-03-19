@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          - install-yarn: true
+          install-yarn: true
       - ruby/install-deps
       # Store bundle cache
       - run:
