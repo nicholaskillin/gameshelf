@@ -16,6 +16,7 @@ jobs:
             bundle install
       - ruby/bundle-install
   rspec:
+    parallelism: 2
     executor: ruby/default
     steps:
       - checkout
@@ -30,3 +31,12 @@ jobs:
           test-runner: rspec
           coverage: true
           parallel: true
+      - ruby/rubocop-check
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
