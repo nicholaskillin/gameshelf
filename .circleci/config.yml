@@ -20,7 +20,7 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - rails/bundle
+      - ruby/install-deps
       - rails/yarn
       - rails/setup-database:
           schema-type: ruby
