@@ -12,9 +12,9 @@ jobs:
       - checkout
       - ruby/install-deps
       # Store bundle cache
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
+      - run:
+          name: Yarn Install
+          command: yarn install
   test:
     parallelism: 3
     docker:
