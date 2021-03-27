@@ -21,12 +21,15 @@ jobs:
     docker:
       - image: cimg/ruby:2.7-node
       - image: circleci/mysql:8.0.4
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+
         environment:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DATABASE: circle_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_HOST: "%"
-          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
