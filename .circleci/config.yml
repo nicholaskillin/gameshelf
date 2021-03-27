@@ -22,10 +22,11 @@ jobs:
       - image: cimg/ruby:2.7-node
       - image: circleci/mysql:8.0.4
         environment:
-          MYSQL_USER: user
-          MYSQL_PASSWORD: passw0rd
-          MYSQL_DATABASE: test_db
-          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: circle_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_USER: root
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
