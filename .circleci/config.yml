@@ -20,7 +20,7 @@ jobs:
     parallelism: 4
     docker:
       - image: cimg/ruby:2.7-node
-      - image: circleci/mysql:8.0.4
+      - image: circleci/mysql:8.0.3
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
           MYSQL_ROOT_HOST: '%'
