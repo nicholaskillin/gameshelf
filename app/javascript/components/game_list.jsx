@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button, ThemeProvider } from '@planning-center/ui-kit'
 
 export default function GameList({
   currentUser,
@@ -31,10 +32,11 @@ export default function GameList({
   }
 
   return (
-    <div id='games'>
-      <div className='row' id='filter-bar'>
-        <div className='col'>{games.length} Games</div>
-        <div className='col-sm-2'>
+    <ThemeProvider>
+      <div id="games">
+        <div className="row" id="filter-bar">
+          <div className="col">{games.length} Games</div>
+          <div className="col-sm-2">
           <select
             onChange={handleSort}
             id={'gameSort'}
@@ -56,6 +58,7 @@ export default function GameList({
         ))}
       </div>
     </div>
+    </ThemeProvider>
   )
 }
 
