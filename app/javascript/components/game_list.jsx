@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, ThemeProvider } from '@planning-center/ui-kit'
+import GameDetailsModal from './games/GameDetailsModal'
 
 export default function GameList({
   currentUser,
@@ -37,32 +38,34 @@ export default function GameList({
         <div className="row" id="filter-bar">
           <div className="col">{games.length} Games</div>
           <div className="col-sm-2">
-          <select
-            onChange={handleSort}
-            id={'gameSort'}
-            className={'form-control'}
-          >
-            <option value={'title'}>Title</option>
-            <option value={'min_play_time'}>Play Time</option>
-          </select>
+            <select
+              onChange={handleSort}
+              id={'gameSort'}
+              className={'form-control'}
+            >
+              <option value={'title'}>Title</option>
+              <option value={'min_play_time'}>Play Time</option>
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          {games.map((game) => (
+            <GameCard
+              currentUser={currentUser}
+              key={game.id}
+              game={game}
+              user={user}
+            />
+          ))}
         </div>
       </div>
-        <div className="row">
-        {games.map((game) => (
-          <GameCard
-            currentUser={currentUser}
-            key={game.id}
-            game={game}
-            user={user}
-          />
-        ))}
-      </div>
-    </div>
     </ThemeProvider>
   )
 }
 
 function GameCard({ currentUser, game, user }) {
+  const [modalOpen, setModalOpen] = useState(false)
+
   function canDelete() {
     return currentUser !== null && currentUser.id === user.id
   }
@@ -103,6 +106,12 @@ function GameCard({ currentUser, game, user }) {
           )}
         </div>
       </div>
+      <GameDetailsModal
+        gameId={game.id}
+        open={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+      />
+      <Button title="Open modal" onClick={() => setModalOpen(true)} />
     </div>
   )
 }
