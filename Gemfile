@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'rails', '6.1.3.1'
 ruby '2.7.2'
 
 gem 'bcrypt'
@@ -15,7 +16,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'puma'
-gem 'rails'
 gem 'rails-controller-testing'
 gem 'react-rails'
 gem 'sass-rails', '~> 5.0'
