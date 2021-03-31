@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   describe '.activate' do
     let(:user_not_activated) { create(:not_activated_user) }
     it "activates the user" do
-      expect(user_not_activated.activated).to_not eq(false)
+      expect(user_not_activated.activated).to eq(false)
       expect(user_not_activated.activated_at).to eq(nil)
 
       user_not_activated.activate
