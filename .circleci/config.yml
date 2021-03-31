@@ -94,7 +94,7 @@ jobs:
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
       MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: ""
+      DEV_DATABASE_PASSWORD: ""
       RAILS_ENV: test
     steps:
       - checkout
