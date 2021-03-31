@@ -8,9 +8,9 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:2.7-node
-    steps:
-      - environment:
+        environment:
           RAILS_ENV: test
+    steps:
       - checkout
       - ruby/install-deps
       # Store bundle cache
