@@ -79,7 +79,7 @@ jobs:
           pkg-manager: yarn
           cache-key: "yarn.lock"
   test:
-    parallelism: 3
+    parallelism: 1
     docker:
       - image: cimg/ruby:2.7-node
       - image: circleci/mysql:8.0.4
