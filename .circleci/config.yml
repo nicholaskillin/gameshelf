@@ -66,6 +66,9 @@
 
 version: 2.1
 
+orbs:
+  node: circleci/node@2
+
 executors:
   default:
     working_directory: ~/gameshelf
