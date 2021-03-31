@@ -1,140 +1,144 @@
-#version: 2.1
-#
-#orbs:
-#  ruby: circleci/ruby@1.1.0
-#  node: circleci/node@2
-#
-#jobs:
-#  build:
-#    docker:
-#      - image: cimg/ruby:2.7-node
-#        environment:
-#          RAILS_ENV: test
-#    steps:
-#      - checkout
-#      - run:
-#          name: log bundle env
-#          command: bundle env
-#      - ruby/install-deps
-#      # Store bundle cache
-#      - node/install-packages:
-#          pkg-manager: yarn
-#          cache-key: "yarn.lock"
-#  test:
-#    parallelism: 1
-#    docker:
-#      - image: cimg/ruby:2.7-node
-#      - image: circleci/mysql:8.0.4
-#        command: --default-authentication-plugin=mysql_native_password
-#        environment:
-#          MYSQL_DATABASE: db/test
-#          MYSQL_USER: root
-#          MYSQL_ROOT_PASSWORD: 'password'
-#          MYSQL_ROOT_HOST: '%'
-#    environment:
-#      BUNDLE_JOBS: "3"
-#      BUNDLE_RETRY: "3"
-#      PGHOST: 127.0.0.1
-#      MYSQL_USER: root
-#      DEV_DATABASE_PASSWORD: ""
-#      RAILS_ENV: test
-#    steps:
-#      - checkout
-#      - ruby/install-deps
-#      - node/install-packages:
-#          pkg-manager: yarn
-#          cache-key: "yarn.lock"
-#      - run:
-#          name: Wait for DB
-#          command: dockerize -wait tcp://localhost:3306 -timeout 1m
-#      - run:
-#          name: Database setup
-#          command: bundle exec rails db:schema:load --trace
-#      # Run rspec in parallel
-#      - ruby/rspec-test
-#      - ruby/rubocop-check
-#
-#workflows:
-#  version: 2
-#  build_and_test:
-#    jobs:
-#      - build
-#      - test:
-#          requires:
-#            - build
-
-
 version: 2.1
 
 orbs:
+  ruby: circleci/ruby@1.1.0
   node: circleci/node@2
-
-executors:
-  default:
-    working_directory: ~/gameshelf
-    docker:
-      - image: circleci/ruby:2.7.2
-        environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_PATH: vendor/bundle
-          BUNDLE_RETRY: 3
-          BUNDLER_VERSION: 2.1.4
-          RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: root
-          DB_PASSWORD: 'password'
-      - image: circleci/mysql:8.0.23
-        command: [--default-authentication-plugin=mysql_native_password]
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          MYSQL_ROOT_HOST: '%'
-
-commands:
-  configure_bundler:
-    description: Configure bundler
-    steps:
-      - run:
-          name: Configure bundler
-          command: |
-            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-            source $BASH_ENV
-            gem install bundler
 
 jobs:
   build:
-    executor: default
+    docker:
+      - image: cimg/ruby:2.7-node
+        environment:
+          RAILS_ENV: test
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - gameshelf-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - gameshelf-
-      - configure_bundler
       - run:
-          name: Install bundle
-          command: bundle install
+          name: log bundle env
+          command: bundle env
+      - ruby/install-deps
+      # Store bundle cache
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+  test:
+    parallelism: 1
+    docker:
+      - image: cimg/ruby:2.7-node
+      - image: circleci/mysql:8.0.4
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_DATABASE: db/test
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: 'password'
+          MYSQL_ROOT_HOST: '%'
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      MYSQL_USER: root
+      DEV_DATABASE_PASSWORD: ""
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-          name: Setup DB
+          name: Database setup
           command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
       - run:
           name: RSpec
           command: |
             bundle exec rspec --profile 10 \
                               --format progress
-      - save_cache:
-          key: gameshelf-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - ./gameshelf
+      - ruby/rubocop-check
 
 workflows:
   version: 2
-  integration:
+  build_and_test:
     jobs:
       - build
+      - test:
+          requires:
+            - build
+
+
+#version: 2.1
+#
+#orbs:
+#  node: circleci/node@2
+#
+#executors:
+#  default:
+#    working_directory: ~/gameshelf
+#    docker:
+#      - image: circleci/ruby:2.7.2
+#        environment:
+#          BUNDLE_JOBS: 3
+#          BUNDLE_PATH: vendor/bundle
+#          BUNDLE_RETRY: 3
+#          BUNDLER_VERSION: 2.1.4
+#          RAILS_ENV: test
+#          DB_HOST: 127.0.0.1
+#          DB_USERNAME: root
+#          DB_PASSWORD: 'password'
+#      - image: circleci/mysql:8.0.23
+#        command: [--default-authentication-plugin=mysql_native_password]
+#        environment:
+#          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+#          MYSQL_ROOT_HOST: '%'
+#
+#commands:
+#  configure_bundler:
+#    description: Configure bundler
+#    steps:
+#      - run:
+#          name: Configure bundler
+#          command: |
+#            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+#            source $BASH_ENV
+#            gem install bundler
+#
+#jobs:
+#  build:
+#    executor: default
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          keys:
+#            - gameshelf-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gameshelf-
+#      - configure_bundler
+#      - run:
+#          name: Install bundle
+#          command: bundle install
+#      - run:
+#          name: Wait for DB
+#          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+#      - run:
+#          name: Setup DB
+#          command: bundle exec rails db:schema:load --trace
+#      - run:
+#          name: RSpec
+#          command: |
+#            bundle exec rspec --profile 10 \
+#                              --format progress
+#      - save_cache:
+#          key: gameshelf-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#          paths:
+#            - vendor/bundle
+#      - persist_to_workspace:
+#          root: ~/
+#          paths:
+#            - ./gameshelf
+#
+#workflows:
+#  version: 2
+#  integration:
+#    jobs:
+#      - build
