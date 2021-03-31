@@ -22,6 +22,12 @@ development:
 test:
   <<: *default
   database: db/test
+  password: ''
+  <% if ENV['CI'] %>
+  host: 127.0.0.1
+  port: <%= ENV['DB_PORT'] %>
+  <% end %>
+
 
 production:
   <<: *default
