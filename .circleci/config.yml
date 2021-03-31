@@ -87,7 +87,7 @@ jobs:
         environment:
           MYSQL_DATABASE: db/test
           MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_ROOT_HOST: '%'
     environment:
       BUNDLE_JOBS: "3"
