@@ -12,7 +12,9 @@ jobs:
           RAILS_ENV: test
     steps:
       - checkout
-      - command: bundle env
+      - run:
+          name: log bundle env
+          command: bundle env
       - ruby/install-deps
       # Store bundle cache
       - node/install-packages:
