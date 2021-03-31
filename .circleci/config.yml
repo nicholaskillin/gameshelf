@@ -20,6 +20,9 @@ jobs:
     parallelism: 4
     docker:
       - image: cimg/ruby:2.7-node
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - image: circleci/mysql:8.0.4
         auth:
           username: mydockerhub-user
@@ -32,6 +35,7 @@ jobs:
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
+      RAILS_ENV: test
     steps:
       - checkout
       - ruby/install-deps
