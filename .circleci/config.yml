@@ -45,6 +45,9 @@ jobs:
           name: Waiting for MySQL to be ready
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
+          name: Install MySQL CLI; Import dummy data; run an example query
+          command: sudo apt-get install default-mysql-client
+      - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       # Run rspec in parallel
