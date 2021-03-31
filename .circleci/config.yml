@@ -83,6 +83,7 @@ jobs:
     docker:
       - image: cimg/ruby:2.7-node
       - image: circleci/mysql:8.0.4
+        command: --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_DATABASE: db/test
           MYSQL_USER: root
