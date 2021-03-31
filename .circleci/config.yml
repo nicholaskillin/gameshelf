@@ -56,7 +56,6 @@ jobs:
           command: |
             bundle exec rspec --profile 10 \
                               --format progress
-      - ruby/rubocop-check
 
 workflows:
   version: 2
