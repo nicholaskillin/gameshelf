@@ -27,5 +27,8 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "webpack-dev-server": "^3.11.1"
+  },
+  "scripts": {
+    "start": "yarn && bin/webpack-dev-server"
   }
 }
