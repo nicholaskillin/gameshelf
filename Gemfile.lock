@@ -387,7 +387,7 @@ DEPENDENCIES
   uglifier
   web-console (>= 3.3.0)
   webdrivers (~> 3.0)
-  webpacker
+  webpacker (= 5.2.1)
 
 RUBY VERSION
    ruby 2.7.2p137
