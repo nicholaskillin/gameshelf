@@ -7,7 +7,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.7-node
+      - image: cimg/ruby:2.7.2-node
         environment:
           RAILS_ENV: test
     steps:
@@ -23,13 +23,12 @@ jobs:
   test:
     parallelism: 1
     docker:
-      - image: cimg/ruby:2.7-node
+      - image: cimg/ruby:2.7.2-node
       - image: circleci/mysql:8.0.4
         command: --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_DATABASE: db/test
           MYSQL_USER: root
-          MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_ROOT_HOST: '%'
     environment:
       BUNDLE_JOBS: "3"
