@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
+  post 'login', to: 'sessions#create', as: 'signin'
   delete 'logout', to: 'sessions#destroy'
   post '/games', to: 'games#create'
   delete '/games', to: 'games#destroy'
@@ -29,12 +29,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:create]
   resources :mechanics, only: [:create]
 
-  namespace :api do 
-    namespace :v1 do 
+  namespace :api do
+    namespace :v1 do
      resources :games, only: [:index]
      resources :users, only: [:index, :destroy]
      resources :friendships, only: [:create, :destroy]
-    end 
-  end 
+    end
+  end
 
 end
