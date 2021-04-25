@@ -33,7 +33,7 @@ describe Types::GameType, type: :request do
     let(:query) do
       <<~GQL
         {
-          game(id: #{ game.id }) {
+          game(id: #{game.id}) {
             id
             title
             categories {
