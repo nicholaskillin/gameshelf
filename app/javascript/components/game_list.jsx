@@ -12,7 +12,7 @@ export default function GameList({
   const handleSort = () => {
     const sortCriteria = $('#gameSort').val()
     function propComparator(prop) {
-      if (prop == 'title') {
+      if (prop === 'title') {
         return function (a, b) {
           if (a[prop] > b[prop]) {
             return 1
@@ -40,11 +40,11 @@ export default function GameList({
           <div className="col-sm-2">
             <select
               onChange={handleSort}
-              id={'gameSort'}
-              className={'form-control'}
+              id="gameSort"
+              className="form-control"
             >
-              <option value={'title'}>Title</option>
-              <option value={'min_play_time'}>Play Time</option>
+              <option value="title">Title</option>
+              <option value="min_play_time">Play Time</option>
             </select>
           </div>
         </div>
@@ -69,6 +69,7 @@ function GameCard({ currentUser, game, user }) {
   function canDelete() {
     return currentUser !== null && currentUser.id === user.id
   }
+
   return (
     <div className="col-sm-3">
       <div className="card game-entry">

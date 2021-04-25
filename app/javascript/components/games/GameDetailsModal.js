@@ -45,7 +45,7 @@ const GameDetailsModal = ({ gameId, onRequestClose, open }) => {
             <Heading>{game.title}</Heading>
           </Card.Section>
           <Card.Section>
-            <StackView axis={'horizontal'}>
+            <StackView axis="horizontal">
               <img
                 style={{ width: '50%', height: 'intrinsic' }}
                 src={game.image}
