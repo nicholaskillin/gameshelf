@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ThemeProvider } from '@planning-center/ui-kit'
+import { Button, StackView, Text, ThemeProvider } from '@planning-center/ui-kit'
 import GameDetailsModal from './games/GameDetailsModal'
 
 export default function GameList({
@@ -85,17 +85,24 @@ function GameCard({ currentUser, game, user }) {
             <li className="list-group-item">{`Play Time: ${game.min_play_time} - ${game.max_play_time} min`}</li>
           </ul>
           <p className="card-text">{game.description.substring(0, 150)}</p>
-          {canDelete() && (
-            <a
-              data-confirm="Are you sure you want to delete this?"
-              className="btn btn-danger game-delete"
-              rel="nofollow"
-              data-method="delete"
-              href={`/games?id=${game.id}`}
-            >
-              <div className="material-icons delete-icon">Delete</div>
-            </a>
-          )}
+          <StackView axis="horizontal" spacing={1}>
+            <Button
+              title="Details"
+              onClick={() => setModalOpen(true)}
+              theme="info"
+            />
+            {canDelete() && (
+              <a
+                data-confirm="Are you sure you want to delete this?"
+                className="btn btn-danger game-delete"
+                rel="nofollow"
+                data-method="delete"
+                href={`/games?id=${game.id}`}
+              >
+                <Text>Delete</Text>
+              </a>
+            )}
+          </StackView>
         </div>
       </div>
       <GameDetailsModal
@@ -103,7 +110,6 @@ function GameCard({ currentUser, game, user }) {
         open={modalOpen}
         onRequestClose={() => setModalOpen(false)}
       />
-      <Button title="Open modal" onClick={() => setModalOpen(true)} />
     </div>
   )
 }
