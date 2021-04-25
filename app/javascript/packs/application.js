@@ -19,7 +19,6 @@
 
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import gameDetails from 'modules/game_details_modal';
 import gameSearch from 'modules/new_game_search';
 import 'modules/friend_search'
 // Support component names relative to this directory:
