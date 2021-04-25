@@ -28,7 +28,7 @@ describe Types::GameType, type: :request do
 
   context 'when requesting a single game' do
     let(:game) { Game.first }
-    let!(:category) { game.categories.create(bgg_id: 1, name: 'Strategy') }
+    let!(:category) { create(:category, games: [game]) }
     let!(:mechanic) { game.mechanics.create(bgg_id: 2, name: 'Set Collection') }
     let(:query) do
       <<~GQL
