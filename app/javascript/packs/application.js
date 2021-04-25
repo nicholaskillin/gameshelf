@@ -7,7 +7,6 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -17,12 +16,11 @@
 
 // console.log('Hello World from Webpacker')
 
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import gameDetails from 'modules/game_details_modal';
-import gameSearch from 'modules/new_game_search';
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+import gameSearch from 'modules/new_game_search'
 import 'modules/friend_search'
 // Support component names relative to this directory:
-var componentRequireContext = require.context("components", true);
-var ReactRailsUJS = require("react_ujs");
-ReactRailsUJS.useContext(componentRequireContext);
+var componentRequireContext = require.context('components', true)
+var ReactRailsUJS = require('react_ujs')
+ReactRailsUJS.useContext(componentRequireContext)
