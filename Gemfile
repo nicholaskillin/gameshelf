@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '6.1.3.1'
+gem 'rails', '7.0.3.1'
 ruby '3.1.2'
 
 gem 'bcrypt'
@@ -15,6 +15,7 @@ gem 'fog-aws'
 gem 'graphql'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'psych', '< 4'
 gem 'puma'
 gem 'rails-controller-testing'
 gem 'react-rails'
