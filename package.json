@@ -19,7 +19,7 @@
     "react-dom": "^16.10.1",
     "react-image": "^4.0.3",
     "react_ujs": "^2.6.0",
-    "webpack": "^4.46.0"
+    "webpack": "^5.74.0"
   },
   "version": "0.1.0",
   "devDependencies": {
