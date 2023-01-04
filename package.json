@@ -3,12 +3,17 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.13",
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.20.7",
     "@emotion/cache": "^10.0.29",
     "@emotion/core": "^10.0.28",
     "@planning-center/ui-kit": "^12.0.0",
-    "@rails/webpacker": "^6.0.0-rc.6",
+    "babel-loader": "^9.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "compression-webpack-plugin": "^10.0.0",
     "core-js": "^3.27.1",
     "emotion-theming": "^10.0.27",
     "graphql": "^15.5.0",
@@ -19,8 +24,13 @@
     "react-dom": "^16.10.1",
     "react-image": "^4.0.3",
     "react_ujs": "^2.6.0",
-    "webpack": "^5.53.0",
-    "webpack-cli": "^4.8.0"
+    "shakapacker": "^6.0.0",
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.75.0",
+    "webpack-assets-manifest": "^5.1.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-merge": "^5.8.0",
+    "webpack-sources": "^3.2.3"
   },
   "version": "0.1.0",
   "babel": {
@@ -42,6 +52,6 @@
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "start": "yarn && bin/webpack-dev-server"
+    "start": "yarn && bin/webpacker-dev-server"
   }
 }
