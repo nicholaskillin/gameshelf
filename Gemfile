@@ -23,7 +23,7 @@ gem 'rexml'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier'
-gem 'webpacker', '5.2.1'
+gem 'webpacker', '6.0.0.rc.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
