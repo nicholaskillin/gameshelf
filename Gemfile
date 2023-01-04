@@ -7,7 +7,7 @@ ruby '3.1.2'
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
-gem "bugsnag", "~> 6.13"
+gem 'bugsnag', '~> 6.13'
 gem 'carrierwave'
 gem 'coffee-rails'
 gem 'figaro'
@@ -21,9 +21,9 @@ gem 'rails-controller-testing'
 gem 'react-rails'
 gem 'rexml'
 gem 'sass-rails', '~> 5.0'
+gem 'shakapacker', '6.0.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier'
-gem 'webpacker', '6.0.0.rc.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
