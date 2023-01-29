@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Button, StackView, Text, ThemeProvider } from '@planning-center/ui-kit'
-import GameDetailsModal from './games/GameDetailsModal'
+import GameDetailsModal from '../../Games/GameDetailsModal'
 
-export default function GameList({
+export default function Index({
   currentUser,
   games: initialGameData,
   user,
