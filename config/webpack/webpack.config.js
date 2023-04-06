@@ -1,5 +1,12 @@
-const { webpackConfig } = require('shakapacker')
+const { merge, webpackConfig } = require('shakapacker')
 
-// See the shakacode/shakapacker README and docs directory for advice on customizing your webpackConfig.
+// See the shakacode/shakapacker README and docs directory
+// for advice on customizing your webpackConfig.
 
-module.exports = webpackConfig
+const options = {
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+}
+
+module.exports = merge({}, webpackConfig, options)
