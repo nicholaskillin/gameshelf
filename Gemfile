@@ -21,7 +21,7 @@ gem 'rails-controller-testing'
 gem 'react-rails'
 gem 'rexml'
 gem 'sass-rails', '~> 5.0'
-gem 'shakapacker', '6.0.0'
+gem 'shakapacker', '6.5.5'
 gem 'turbolinks', '~> 5'
 gem 'uglifier'
 

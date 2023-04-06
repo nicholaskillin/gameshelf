@@ -327,7 +327,7 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    shakapacker (6.0.0)
+    shakapacker (6.5.5)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -409,7 +409,7 @@ DEPENDENCIES
   rspec-rails (~> 4.0.1)
   sass-rails (~> 5.0)
   selenium-webdriver
-  shakapacker (= 6.0.0)
+  shakapacker (= 6.5.5)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
