@@ -15,6 +15,7 @@ gem 'fog-aws'
 gem 'graphql'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'pg'
 gem 'psych', '< 4'
 gem 'puma'
 gem 'rails-controller-testing'
@@ -31,7 +32,6 @@ group :development, :test do
   gem 'dotenv'
   gem 'factory_bot_rails'
   gem 'ffaker'
-  gem 'mysql2'
   gem 'pry'
   gem 'pry-remote'
   gem 'rspec-rails', '~> 4.0.1'
@@ -44,10 +44,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-end
-
-group :production do
-  gem 'pg'
 end
 
 group :test do

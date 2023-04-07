@@ -11,39 +11,31 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_08_01_201356) do
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
     t.bigint "bgg_id"
     t.string "name"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "categories_games", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories_games", id: false, force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "game_id", null: false
     t.index ["category_id", "game_id"], name: "index_categories_games_on_category_id_and_game_id"
     t.index ["game_id", "category_id"], name: "index_categories_games_on_game_id_and_category_id"
   end
 
-  create_table "friendships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "game_nights", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "date", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "game_nights_users", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "game_night_id", null: false
-    t.bigint "user_id", null: false
-  end
-
-  create_table "game_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "game_users", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "game_id"
     t.string "rules_video"
@@ -54,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_201356) do
     t.index ["user_id"], name: "index_game_users_on_user_id"
   end
 
-  create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "games", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
     t.integer "min_play_time"
@@ -75,21 +67,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_201356) do
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
-  create_table "games_mechanics", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "games_mechanics", id: false, force: :cascade do |t|
     t.bigint "game_id", null: false
     t.bigint "mechanic_id", null: false
     t.index ["game_id", "mechanic_id"], name: "index_games_mechanics_on_game_id_and_mechanic_id"
     t.index ["mechanic_id", "game_id"], name: "index_games_mechanics_on_mechanic_id_and_game_id"
   end
 
-  create_table "mechanics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "mechanics", force: :cascade do |t|
     t.string "name"
     t.bigint "bgg_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password"
