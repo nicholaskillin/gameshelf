@@ -2,7 +2,48 @@ import React, { useState } from 'react'
 import { Button, StackView, Text, ThemeProvider } from '@planning-center/ui-kit'
 import GameDetailsModal from '../../Games/GameDetailsModal'
 
-export default function Index({ currentUser, games: initialGameData, user }) {
+type User = {
+  activated: boolean
+  activated_at: string
+  avater: {
+    url?: string
+  }
+  email: string
+  id: number
+  name: string
+  username: string
+}
+
+type Game = {
+  best_number_of_players?: number
+  bgg_number: number
+  description: string
+  id: number
+  image: string
+  max_play_time: number
+  max_players: number
+  min_age: number
+  min_play_time: number
+  min_players: number
+  playthrough_url?: string
+  recommended_min_age?: number
+  rules_url?: string
+  title: string
+  year_published: 2023
+}
+
+type IndexProps = {
+  currentUser: User
+  games: Game[]
+  user: User
+}
+
+export default function Index({
+  currentUser,
+  games: initialGameData,
+  user,
+}: IndexProps) {
+  console.log({ currentUser, initialGameData, user })
   const [games, setGames] = useState(initialGameData)
 
   const handleSort = () => {
