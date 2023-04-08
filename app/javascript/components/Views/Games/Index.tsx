@@ -43,7 +43,6 @@ export default function Index({
   games: initialGameData,
   user,
 }: IndexProps) {
-  console.log({ currentUser, initialGameData, user })
   const [games, setGames] = useState(initialGameData)
 
   const handleSort = () => {
