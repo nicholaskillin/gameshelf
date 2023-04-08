@@ -40,12 +40,6 @@
     "webpack-sources": "^3.2.3"
   },
   "version": "0.1.0",
-  "babel": {
-    "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js",
-      "@babel/preset-react"
-    ]
-  },
   "browserslist": [
     "defaults"
   ],
@@ -62,6 +56,6 @@
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "start": "yarn && bin/webpacker-dev-server"
+    "start": "yarn && rm -rf public/packs && bin/webpacker-dev-server"
   }
 }
