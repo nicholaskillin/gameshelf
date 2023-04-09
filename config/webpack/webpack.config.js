@@ -18,7 +18,7 @@ if (isDevelopment && inliningCss) {
 
 const options = {
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.css', '.js', '.jsx'],
   },
 }
 
