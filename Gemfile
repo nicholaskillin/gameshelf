@@ -35,6 +35,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-remote'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'rubocop-thread_safety', require: false
 end
 
 group :development do

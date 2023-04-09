@@ -1,0 +1,89 @@
+require: rubocop-thread_safety
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+
+Layout/BeginEndAlignment:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: false
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+
+Lint/DuplicateRequire:
+  Enabled: false
+
+Lint/DuplicateRescueException:
+  Enabled: false
+
+Lint/EmptyConditionalBody:
+  Enabled: false
+
+Lint/EmptyFile:
+  Enabled: false
+
+Lint/FloatComparison:
+  Enabled: false
+
+Metrics/BlockLength:
+  AllowedMethods:
+    - context
+    - describe
+    - shared_examples
+    - shared_examples_for
+  Exclude:
+    - '**/*.rake'
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
