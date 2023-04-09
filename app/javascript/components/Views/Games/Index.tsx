@@ -45,8 +45,7 @@ export default function Index({
 }: IndexProps) {
   const [games, setGames] = useState(initialGameData)
 
-  const handleSort = () => {
-    const sortCriteria = $('#gameSort').val()
+  const handleSort = (sortCriteria) => {
     function propComparator(prop) {
       if (prop === 'title') {
         return function (a, b) {
@@ -64,7 +63,7 @@ export default function Index({
         }
       }
     }
-    const gameData = [].concat(games).sort(propComparator(sortCriteria))
+    const gameData = [...games].sort(propComparator(sortCriteria))
     setGames(gameData)
   }
 
@@ -75,7 +74,7 @@ export default function Index({
           <div className="col">{games.length} Games</div>
           <div className="col-sm-2">
             <select
-              onChange={handleSort}
+              onChange={({ target: { value } }) => handleSort(value)}
               id="gameSort"
               className="form-control"
             >
