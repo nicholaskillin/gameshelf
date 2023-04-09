@@ -23,33 +23,6 @@
   @include box_sizing;
 }
 
-/* Profile Page Header */
-
-.profile-header {
-  height: 8em;
-}
-
-.user-avatar {
-  width: 8em;
-  height: 100%;
-  margin-left: 2.5em;
-  object-fit: cover;
-}
-
-#user-name {
-  margin-left: 1em;
-  font-size: 2em;
-  line-height: 4em;
-}
-
-#new-game-button {
-  float: right;
-}
-
-#user-edit-button {
-  margin-bottom: 0.3rem;
-}
-
 /* Game Index */
 .game-entry {
   width: 18rem;
