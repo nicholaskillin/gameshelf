@@ -12,23 +12,46 @@ module Mutations
     attr_reader :game
 
     def resolve(game_attributes:, categories:, mechanics:)
-      saved_categories = categories.map do |category|
-        Category.find_or_create_by(category.to_h)
-      end
+      build_game(game_attributes, categories, mechanics)
 
-      saved_mechanics = mechanics.map do |mechanic|
-        Mechanic.find_or_create_by(mechanic.to_h)
-      end
+      game.save!
 
-      @game = Game.new(game_attributes.to_h)
+      add_game_to_user_collection
 
-      game.categories << saved_categories
-      game.mechanics << saved_mechanics
-
-      game.save! ? success_return : failure_return
+      user.games.include?(game) ? success_return : failure_return
     end
 
     private
+
+    def add_game_to_user_collection
+      user.games << game unless user.games.include?(game)
+    end
+
+    def build_game(game_attributes, categories, mechanics)
+      @game = Game.find_or_initialize_by(game_attributes.to_h)
+
+      game.categories << saved_categories(categories)
+      game.mechanics << saved_mechanics(mechanics)
+    end
+
+    def failure_return
+      {
+        game: nil,
+        errors: game.errors.full_messages,
+      }
+    end
+
+    def saved_categories(categories)
+      categories.map do |category|
+        Category.find_or_create_by(category.to_h)
+      end
+    end
+
+    def saved_mechanics(mechanics)
+      mechanics.map do |mechanic|
+        Mechanic.find_or_create_by(mechanic.to_h)
+      end
+    end
 
     def success_return
       {
@@ -37,11 +60,8 @@ module Mutations
       }
     end
 
-    def failure_return
-      {
-        game: nil,
-        errors: game.errors.full_messages
-      }
+    def user
+      @user ||= Current.user
     end
   end
 end

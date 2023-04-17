@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
 import Image from 'react-bootstrap/Image'
+
+import NewGameModal from './NewGameModal'
 
 type User = {
   activated: boolean
@@ -29,21 +31,34 @@ const ProfileHeader = ({
   user,
   userEditPath,
 }: ProfileHeaderProps) => {
-  console.log({ canEdit, user, defaultAvatarUrl })
+  const [showAddGameModal, setShowAddGameModal] = useState(false)
   const hasAvatar = !!user.avatar.url
   const avatarUrl = hasAvatar ? user.avatar.url : defaultAvatarUrl
 
+  const handleCloseAddGameModal = () => setShowAddGameModal(false)
+  const handleOpenAddGameModal = () => setShowAddGameModal(true)
+
   return (
-    <Stack direction="horizontal" gap={3}>
-      <Image src={avatarUrl} width="140" />
-      <h2>{user.name}</h2>
-      {canEdit && (
-        <Button href={userEditPath} variant="outline-secondary">
-          Edit
-        </Button>
-      )}
-      {canAddGames && <Button className="ms-auto">Add Game</Button>}
-    </Stack>
+    <>
+      <Stack direction="horizontal" gap={3}>
+        <Image src={avatarUrl} width="140" />
+        <h2>{user.name}</h2>
+        {canEdit && (
+          <Button href={userEditPath} variant="outline-secondary">
+            Edit
+          </Button>
+        )}
+        {canAddGames && (
+          <Button className="ms-auto" onClick={handleOpenAddGameModal}>
+            Add Game
+          </Button>
+        )}
+      </Stack>
+      <NewGameModal
+        handleClose={handleCloseAddGameModal}
+        show={showAddGameModal}
+      />
+    </>
   )
 }
 

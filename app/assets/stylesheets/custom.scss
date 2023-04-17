@@ -4,13 +4,13 @@
 // General
 
 .container-fluid {
-  padding-top: 2em;
+  padding-top: 2em !important;
 }
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
 
 /* miscellaneous */
@@ -25,29 +25,18 @@
 
 /* Game Index */
 .game-entry {
-  width: 18rem;
+  width: 18rem !important;
 }
 
 #filter-bar {
-  display: flex;
-  align-items: center;
-  padding-bottom: 1em;
+  display: flex !important;
+  align-items: center !important;
+  padding-bottom: 1em !important;
 }
 
 /* Modals */
 .modal-container {
   padding-left: 10px;
-}
-
-/* New Game Modal */
-
-tr:hover {
-  background-color: lightgray;
-  cursor: pointer;
-}
-
-tr:nth-child(1):hover {
-  background-color: white;
 }
 
 /* Friendships */
