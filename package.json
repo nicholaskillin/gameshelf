@@ -35,6 +35,7 @@
     "shakapacker": "6.5.5",
     "style-loader": "^3.3.2",
     "terser-webpack-plugin": "^5.3.6",
+    "turbolinks": "^5.2.0",
     "typescript": "^5.0.3",
     "webpack": "^5.76.0",
     "webpack-assets-manifest": "^5.1.0",
