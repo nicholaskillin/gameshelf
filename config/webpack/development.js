@@ -6,7 +6,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const config = require('./base')
 
 if (inliningCss) {
-  webpackConfig.plugins.push(
+  config.plugins.push(
     new ReactRefreshWebpackPlugin({
       overlay: {
         sockPort: webpackConfig.devServer.port,
