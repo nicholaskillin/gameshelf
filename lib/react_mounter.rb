@@ -11,6 +11,6 @@ class ReactMounter < React::Rails::ComponentMount
 
   # :reek:UtilityFunction
   def provider_defaults
-    {}.deep_transform_keys { |key| key.to_s.camelize(:lower) }
+    { domain: ENV['DOMAIN'] }.deep_transform_keys { |key| key.to_s.camelize(:lower) }
   end
 end
