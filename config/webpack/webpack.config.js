@@ -1,25 +1,16 @@
-const { inliningCss, merge, webpackConfig } = require('shakapacker')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const { env } = require('shakapacker')
+const { existsSync } = require('fs')
+const { resolve } = require('path')
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
-
-if (isDevelopment && inliningCss) {
-  webpackConfig.plugins.push(
-    new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockPort: webpackConfig.devServer.port,
-      },
-    })
-  )
+const envSpecificConfig = () => {
+  const path = resolve(__dirname, `${env.nodeEnv}.js`)
+  if (existsSync(path)) {
+    console.log(`Loading ENV specific webpack configuration file ${path}`)
+    return require(path)
+  } else {
+    // Probably an error if the file for the NODE_ENV does not exist
+    throw new Error(`Got Error with NODE_ENV = ${env.nodeEnv}`)
+  }
 }
 
-// See the shakacode/shakapacker README and docs directory
-// for advice on customizing your webpackConfig.
-
-const options = {
-  resolve: {
-    extensions: ['.css', '.js', '.jsx'],
-  },
-}
-
-module.exports = merge({}, webpackConfig, options)
+module.exports = envSpecificConfig()
