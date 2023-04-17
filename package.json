@@ -8,6 +8,7 @@
     "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.4",
     "@babel/runtime": "^7.20.13",
     "@emotion/cache": "^10.0.29",
     "@emotion/core": "^10.0.28",
@@ -17,19 +18,25 @@
     "bootstrap": "^5.2.3",
     "compression-webpack-plugin": "^10.0.0",
     "core-js": "^3.27.1",
+    "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^5.0.0",
     "emotion-theming": "^10.0.27",
     "graphql": "^15.5.0",
+    "mini-css-extract-plugin": "^2.7.5",
     "pnp-webpack-plugin": "1",
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.7.0",
+    "react-bootstrap": "^2.7.2",
     "react-bootstrap-sweetalert": "^5.1.15",
     "react-dom": "^18.2.0",
     "react-image": "^4.0.3",
     "react_ujs": "^2.6.0",
     "shakapacker": "6.5.5",
+    "style-loader": "^3.3.2",
     "terser-webpack-plugin": "^5.3.6",
+    "turbolinks": "^5.2.0",
+    "typescript": "^5.0.3",
     "webpack": "^5.76.0",
     "webpack-assets-manifest": "^5.1.0",
     "webpack-cli": "^5.0.1",
@@ -38,12 +45,6 @@
     "webpack-sources": "^3.2.3"
   },
   "version": "0.1.0",
-  "babel": {
-    "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js",
-      "@babel/preset-react"
-    ]
-  },
   "browserslist": [
     "defaults"
   ],
@@ -60,6 +61,6 @@
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "start": "yarn && bin/webpacker-dev-server"
+    "start": "yarn && rm -rf public/packs && bin/webpacker-dev-server"
   }
 }
