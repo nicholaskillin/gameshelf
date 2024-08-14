@@ -15,4 +15,5 @@ Sentry.init do |config|
   # of sampled transactions.
   # We recommend adjusting this value in production.
   config.profiles_sample_rate = 1.0
+  config.send_default_pii = true
 end
