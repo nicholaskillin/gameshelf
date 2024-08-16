@@ -241,6 +241,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.0)
     rack (2.2.9)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-proxy (0.7.7)
       rack
     rack-test (2.1.0)
@@ -438,6 +440,7 @@ DEPENDENCIES
   pry-remote
   psych (< 4)
   puma
+  rack-attack
   rails (= 7.0.4.1)
   rails-controller-testing
   react-rails
