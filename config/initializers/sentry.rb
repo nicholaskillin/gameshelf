@@ -3,6 +3,7 @@
 Sentry.init do |config|
   config.breadcrumbs_logger = %i[active_support_logger http_logger]
   config.dsn = ENV["SENTRY_DSN"]
+  config.metrics.enabled = true
   # config.enable_tracing = true
 
   # Set traces_sample_rate to 1.0 to capture 100%

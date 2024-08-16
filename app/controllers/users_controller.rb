@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, :only => [:new, :create]
-  before_action :correct_user, only: [:edit, :update]
+  skip_before_action :require_login, only: %i[new create]
+  before_action :correct_user, only: %i[edit update]
+
+  invisible_captcha only: [:create], honeypot: :last_name
 
   def new
     @user = User.new
@@ -13,8 +15,10 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      flash[:danger] = "Your account was not created. Please correct the errors below and try again."
-      render 'new'
+      flash[
+        :danger
+      ] = "Your account was not created. Please correct the errors below and try again."
+      render "new"
     end
   end
 
@@ -42,18 +46,25 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :avatar)
-    end
 
-    # Confirms current user
-    def correct_user
-      @user = User.find_by_username(params[:username])
-      if current_user?(@user)
-      else
-        flash[:danger] = "Can't edit someone else's profile"
-        redirect_to user_url(current_user.username)
-      end
-    end
+  def user_params
+    params.require(:user).permit(
+      :name,
+      :username,
+      :email,
+      :password,
+      :password_confirmation,
+      :avatar
+    )
+  end
 
+  # Confirms current user
+  def correct_user
+    @user = User.find_by_username(params[:username])
+    if current_user?(@user)
+    else
+      flash[:danger] = "Can't edit someone else's profile"
+      redirect_to user_url(current_user.username)
+    end
+  end
 end
