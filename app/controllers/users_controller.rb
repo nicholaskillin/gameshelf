@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :correct_user, only: %i[edit update]
 
-  invisible_captcha only: [:create], honeypot: :last_name
+  invisible_captcha only: [:create],
+                    honeypot: :last_name,
+                    on_spam: :spam_detected
 
   def new
     @user = User.new
@@ -46,6 +48,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def spam_detected
+    redirect_to root_url
+  end
 
   def user_params
     params.require(:user).permit(
