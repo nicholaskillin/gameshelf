@@ -23,6 +23,9 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { maximum: 25 }, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  # - Scopes
+  scope :unactivated, -> { where(activated: false) }
+
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

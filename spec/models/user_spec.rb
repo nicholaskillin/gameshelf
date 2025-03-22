@@ -57,4 +57,15 @@ RSpec.describe User, type: :model do
       expect { user.send_activation_email }.to change {ActionMailer::Base.deliveries.count}.by 1
     end
   end
+
+  describe 'scopes' do
+    describe '.unactivated' do
+      subject { User.unactivated }
+      
+      let!(:inactive_user) { create(:not_activated_user) }
+      let!(:active_user) { create(:user) }
+
+      it { is_expected.to match_array [inactive_user] }
+    end
+  end
 end
