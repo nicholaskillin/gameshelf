@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.active_fiends' do
+  describe '.active_friends' do
     let(:friend1) { create(:user) }
     let(:friend2) { create(:user) }
     let(:requested_friend) { create(:user) }
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.pending_fiends' do
+  describe '.pending_friends' do
     let(:friend1) { create(:user) }
     let(:friend2) { create(:user) }
     let(:requested_friend) { create(:user) }
