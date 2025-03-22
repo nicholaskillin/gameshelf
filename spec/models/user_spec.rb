@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'finds people that the user is friends with' do
-      expect(user.active_friends).to eq([friend1, friend2])
+      expect(user.active_friends).to match_array([friend1, friend2])
     end
   end
 
