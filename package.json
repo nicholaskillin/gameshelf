@@ -9,7 +9,7 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
-    "@babel/runtime": "^7.20.13",
+    "@babel/runtime": "^7.26.10",
     "@emotion/cache": "^10.0.29",
     "@emotion/core": "^10.0.28",
     "@planning-center/ui-kit": "^12.0.0",
