@@ -39,7 +39,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'pry'
   gem 'pry-remote'
-  gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-rails', '~> 7.1.1'
   gem 'rubocop-thread_safety', require: false
 end
 
