@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '7.0.4.1'
+gem 'rails', '7.1.5.1'
 ruby '3.3.0'
 
 gem 'bcrypt'
@@ -39,7 +39,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'pry'
   gem 'pry-remote'
-  gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-rails', '~> 7.1.1'
   gem 'rubocop-thread_safety', require: false
 end
 

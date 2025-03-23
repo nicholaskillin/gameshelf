@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 # Load the Rails application.
-require_relative 'application'
+require_relative "application"
 
 ActionMailer::Base.smtp_settings = {
   user_name: ENV['SENDGRID_USERNAME'],
