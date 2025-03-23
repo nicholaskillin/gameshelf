@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.active_fiends' do
+  describe '.active_friends' do
     let(:friend1) { create(:user) }
     let(:friend2) { create(:user) }
     let(:requested_friend) { create(:user) }
@@ -30,11 +30,11 @@ RSpec.describe User, type: :model do
     end
 
     it 'finds people that the user is friends with' do
-      expect(user.active_friends).to eq([friend1, friend2])
+      expect(user.active_friends).to match_array([friend1, friend2])
     end
   end
 
-  describe '.pending_fiends' do
+  describe '.pending_friends' do
     let(:friend1) { create(:user) }
     let(:friend2) { create(:user) }
     let(:requested_friend) { create(:user) }
@@ -55,6 +55,17 @@ RSpec.describe User, type: :model do
   describe '.send_activation_email' do
     it 'sends an activation email' do
       expect { user.send_activation_email }.to change {ActionMailer::Base.deliveries.count}.by 1
+    end
+  end
+
+  describe 'scopes' do
+    describe '.unactivated' do
+      subject { User.unactivated }
+      
+      let!(:inactive_user) { create(:not_activated_user) }
+      let!(:active_user) { create(:user) }
+
+      it { is_expected.to match_array [inactive_user] }
     end
   end
 end
