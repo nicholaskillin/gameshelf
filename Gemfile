@@ -6,7 +6,7 @@ ruby '3.3.0'
 
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap', '~> 4.6.2'
 gem 'bugsnag', '~> 6.13'
 gem 'carrierwave'
 gem 'coffee-rails'
