@@ -40,7 +40,7 @@
     "webpack": "^5.94.0",
     "webpack-assets-manifest": "^5.1.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.15.2",
+    "webpack-dev-server": "^5.2.1",
     "webpack-merge": "^5.8.0",
     "webpack-sources": "^3.2.3"
   },
@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "react-refresh": "^0.14.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^5.2.1"
   },
   "scripts": {
     "start": "yarn && rm -rf public/packs && bin/webpacker-dev-server"
