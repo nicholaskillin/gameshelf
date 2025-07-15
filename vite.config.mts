@@ -21,4 +21,13 @@ export default defineConfig({
       host: 'localhost',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+      treeshake: false,
+    },
+    minify: 'esbuild',
+  },
 })
