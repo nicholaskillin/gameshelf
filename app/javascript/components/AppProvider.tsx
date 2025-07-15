@@ -1,6 +1,5 @@
-import React, { createContext } from 'react'
-
-import 'bootstrap/dist/css/bootstrap.min.css'
+import * as React from 'react'
+import { createContext } from 'react'
 import {
   ApolloClient,
   createHttpLink,
