@@ -8,6 +8,22 @@ import {
   ApolloProvider,
 } from '@apollo/client'
 
+// Import components
+import Index from './Views/Games/Index.tsx'
+import NewGameModal from './shared/NewGameModal.tsx'
+import ProfileHeader from './shared/ProfileHeader.tsx'
+import GameDetailsModal from './Games/GameDetailsModal.jsx'
+import DeleteUserButton from './delete_user_button.jsx'
+
+// Component registry
+const components = {
+  'Views/Games/Index': Index,
+  'shared/ProfileHeader': ProfileHeader,
+  'shared/NewGameModal': NewGameModal,
+  'Games/GameDetailsModal': GameDetailsModal,
+  'delete_user_button': DeleteUserButton,
+}
+
 export const ProviderProps = createContext({})
 
 type AppProviderProps = {
@@ -22,13 +38,19 @@ const AppProvider = ({
   providerProps,
   ...props
 }: AppProviderProps) => {
-  const Component = window.ReactRailsUJS.getConstructor(component)
+  const Component = components[component]
+  
+  if (!Component) {
+    console.error(`Component "${component}" not found in AppProvider`)
+    return <div>Component not found: {component}</div>
+  }
+
   const httpLink = createHttpLink({
     uri: '/graphql/',
   })
   const csrfToken = document
     .querySelector('meta[name=csrf-token]')
-    .getAttribute('content')
+    ?.getAttribute('content')
 
   const client = new ApolloClient({
     link: new HttpLink({

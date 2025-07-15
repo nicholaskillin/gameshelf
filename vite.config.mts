@@ -30,4 +30,7 @@ export default defineConfig({
     },
     minify: 'esbuild',
   },
+  optimizeDeps: {
+    include: ['react_ujs'],
+  },
 })
