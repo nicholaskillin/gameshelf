@@ -62,6 +62,8 @@ class User < ApplicationRecord
   end
 
   def password_reset_expired?
+    return true if reset_sent_at.nil?
+
     reset_sent_at < 2.hours.ago
   end
 
