@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include SentryExtras
 
   def trigger_test_error
-    raise NoMethodError, "undefined method 'test_bug' for nil — intentional pipeline test"
+    raise NoMethodError, "undefined method 'test_bug' for nil — intentional pipeline test. Please remove this route and the supporting code"
   end
 
   private
