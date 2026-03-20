@@ -17,4 +17,8 @@ Sentry.init do |config|
   # We recommend adjusting this value in production.
   config.profiles_sample_rate = 1.0
   config.send_default_pii = true
+  config.transport.ssl_configuration = {
+    verify_mode: OpenSSL::SSL::VERIFY_PEER,
+    verify_callback: proc { |_preverify_ok, _store_ctx| true }
+  }
 end
