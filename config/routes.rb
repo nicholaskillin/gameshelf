@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:create]
   resources :mechanics, only: [:create]
 
+  get '/trigger_test_error', to: 'application#trigger_test_error'
+
   namespace :api do
     namespace :v1 do
      resources :games, only: [:index]

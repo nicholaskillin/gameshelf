@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include SentryExtras
 
+  def trigger_test_error
+    raise NoMethodError, "undefined method 'test_bug' for nil — intentional pipeline test"
+  end
+
   private
 
   def require_login
