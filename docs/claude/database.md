@@ -1,17 +1,6 @@
-# Database Schema & Models
+# Models
 
-## Schema
-
-| Table | Key Columns |
-|-------|-------------|
-| `users` | id, name, email (unique), username (unique), password_digest, avatar, activated, activation_digest, reset_digest, reset_sent_at |
-| `games` | id, title, bgg_number, description, image, min/max_players, min/max_play_time, min_age, best_number_of_players, year_published, rules_url, playthrough_url |
-| `game_users` | id, user_id, game_id, rules_video, available |
-| `friendships` | id, user_id, friend_id |
-| `categories` | id, bgg_id, name |
-| `mechanics` | id, bgg_id, name |
-| `categories_games` | category_id, game_id |
-| `games_mechanics` | game_id, mechanic_id |
+For the current database schema (tables, columns, indexes) read `db/schema.rb` directly — it is the source of truth and always up to date.
 
 ## Model Relationships
 
