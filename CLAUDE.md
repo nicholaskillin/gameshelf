@@ -1,71 +1,28 @@
 # GameShelf
 
-A Ruby on Rails application for managing game collections.
+A Ruby on Rails + React app for managing board game collections with social features and BoardGameGeek integration.
 
-## Project Structure
+**Stack**: Ruby 3.3.0 / Rails 7.1.5.1 / PostgreSQL / React 18 + TypeScript / Vite 5 / GraphQL
 
-This is a Ruby on Rails application with the following key directories:
-- `app/` - Main application code (models, views, controllers)
-- `app/javascript/` - Frontend JavaScript/React components (using Vite)
-- `config/` - Configuration files
-- `db/` - Database migrations and schema
-- `spec/` - Test files (RSpec)
+---
 
-## Development Commands
+## Quick Start
 
 ```bash
-# Start the Rails development server
-rails server
-
-# Start the Vite development server (for assets)
-bin/vite dev
-# OR
-yarn dev
-
-# Build assets for production
-bin/vite build
-# OR
-yarn build
-
-# Clean build and rebuild assets
-yarn build:clean
-
-# Preview production build locally
-yarn preview
-
-# Type checking (TypeScript)
-yarn typecheck
-
-# Lint JavaScript/TypeScript files
-yarn lint
-yarn lint:fix
-
-# Run tests
-bundle exec rspec
-
-# Run migrations
-rails db:migrate
-
-# Install dependencies
-bundle install
-yarn install
+bundle install && yarn install
+rails db:create db:migrate
+bin/rails server   # :3000
+bin/vite dev       # :3036
 ```
 
-## Frontend Stack
+---
 
-- **Build Tool**: Vite (migrated from Shakapacker/Webpack)
-- **Framework**: React 18 + TypeScript
-- **Styling**: Bootstrap 5
-- **State Management**: Apollo Client (GraphQL)
+## Documentation
 
-## Security Features
-
-- Invisible captcha protection on user forms
-- Rack Attack for rate limiting
-- Captcha on password reset
-
-## Recent Changes
-
-- **Major Migration**: Migrated from Shakapacker to Vite for faster development builds
-- Added game night feature with creator/host tracking
-- Enhanced security measures for user registration
+- [Architecture & Project Structure](docs/claude/architecture.md)
+- [Database Schema & Models](docs/claude/database.md)
+- [Controllers, Routes & API](docs/claude/api.md)
+- [Frontend Architecture](docs/claude/frontend.md)
+- [Security & Authentication](docs/claude/security.md)
+- [Testing Conventions](docs/claude/testing.md)
+- [Development Setup & Commands](docs/claude/setup.md)
