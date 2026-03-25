@@ -1,6 +1,6 @@
-<%= react_component("shared/ProfileHeader", { 
+<%= react_component("shared/ProfileHeader", {
   canAddGames: (params[:controller] == 'games' && params[:action] == 'index' && can_add_games?(@user)),
   canEdit: (@user == current_user && params[:action] == 'show'),
   defaultAvatarUrl: image_path("users/placeholder-avatar.png"),
-  user: @user, userEditPath: edit_user_url(@user.username)
+  user: @user, userEditPath: @user&.username.present? ? edit_user_url(@user.username) : nil
 })%>
