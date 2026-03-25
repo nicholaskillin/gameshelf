@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark navbar-fixed-top navbar-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <%= link_to "Game Shelf", root_path, class: "navbar-brand" %>
@@ -17,7 +17,7 @@
     <ul class="navbar-nav">
       <% if logged_in? %> 
         <li class="dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
               <%= current_user.name %> <b class="caret"></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

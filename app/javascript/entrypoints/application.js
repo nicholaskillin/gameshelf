@@ -1,6 +1,7 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
 
 // Import jQuery and make it global for legacy code
 import $ from 'jquery'
