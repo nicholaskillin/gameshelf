@@ -16,6 +16,7 @@ gem 'invisible_captcha'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'pg'
+gem 'postal-rails'
 gem 'psych', '< 4'
 gem 'puma'
 gem 'rack-attack'
@@ -32,7 +33,7 @@ gem 'uglifier'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv'
   gem 'factory_bot_rails'
   gem 'ffaker'
